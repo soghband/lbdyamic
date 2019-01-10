@@ -1,0 +1,47 @@
+<div class="p2DynamicTabPanel">
+    <app-dynamic-tab #tabListRefId [tabCreation]="tabCreation"></app-dynamic-tab>
+    <div class="tabContentPanel {{tabListRef.getCssStatus('Popup')}}">
+        <div class="btn-style-dynamic" (click)="popupError()">test popup error</div>
+        <div class="btn-style-dynamic" (click)="popupInfo()">test popup info</div>
+        <div class="btn-style-dynamic" (click)="popupSuccess()">test popup success</div>
+        <div class="btn-style-dynamic" (click)="popupWarning()">test popup warning</div>
+        <div class="btn-style-dynamic" (click)="popupConfirm()">test popup confirm</div>
+    </div>
+    <div class="tabContentPanel {{tabListRef.getCssStatus('Form')}}">
+        <app-dynamic-form #dynamicForm [formCreation]="formCreation" (callBack)="processCallBack($event)"></app-dynamic-form>
+        <div (click)="checkData()" class="btn-style-dynamic">check</div>
+        <div class="btn-style-dynamic" (click)="testSetAttribute()">test set attribute</div>
+        <div class="btn-style-dynamic" (click)="testGetAttribute()">test get attribute</div>
+        <div class="btn-style-dynamic" (click)="testSetValue()">test set value</div>
+        <div class="btn-style-dynamic" (click)="testGetValue()">test get value</div>
+        <div class="btn-style-dynamic" (click)="testGetInput()">test get dynamic input element</div>
+        <div class="btn-style-dynamic" (click)="testReRenderField()">test Rerender Field</div>
+        <div class="btn-style-dynamic" (click)="testMapSetAttribute()">test map set attribute</div>
+        <div class="btn-style-dynamic" (click)="testMapSetValue()">test map set value</div>
+        <div class="btn-style-dynamic" (click)="testMapGetValue()">test map get value</div>
+        <div class="btn-style-dynamic" (click)="testGetRequire()">test get require</div>
+        <div class="btn-style-dynamic" (click)="testGetValidate()">test get validate</div>
+    </div>
+    <div class="tabContentPanel {{tabListRef.getCssStatus('Form Table')}}">
+        <app-dynamic-form #dynamicFormTable [formCreation]="formCreationTable" (callBack)="processCallBack($event)"></app-dynamic-form>
+        <div (click)="checkData()" class="btn-style-dynamic">check</div>
+        <div class="btn-style-dynamic" (click)="testEnableFormRow()">test Enable Row 0</div>
+        <div class="btn-style-dynamic" (click)="testDisableFormRow()">test Disable Row 0</div>
+        <div class="btn-style-dynamic" (click)="testFormTableGetInput()">test Get Input</div>
+        <div class="btn-style-dynamic" (click)="testAddRow()">test Add Row</div>
+    </div>
+    <div class="tabContentPanel {{tabListRef.getCssStatus('Table')}}">
+        <app-dynamic-table [tableCreation]="tableCreation" #tableId (callBack)="processCallBack($event)"></app-dynamic-table>
+        <div class="btn-style-dynamic" (click)="getTableCheckList()">test get checkedList</div>
+        <div class="btn-style-dynamic" (click)="clearTableCheckList()">test clear checkedList</div>
+    </div>
+    <div class="tabContentPanel {{tabListRef.getCssStatus('Error')}}">
+        <div class="btn-style-dynamic" (click)="addError()">add error</div>
+        <div class="btn-style-dynamic" (click)="clearError()">clear error</div>
+    </div>
+    <div class="tabContentPanel {{tabListRef.getCssStatus('Lock Screen')}}">
+        <div class="btn-style-dynamic" (click)="testLockScreen()">test Lock Screen</div>
+    </div>
+</div>
+<app-error-msg-bubble #errorBubble></app-error-msg-bubble>
+<app-dynamic-popup #p2popup (callback)="popupCallback($event)"></app-dynamic-popup>

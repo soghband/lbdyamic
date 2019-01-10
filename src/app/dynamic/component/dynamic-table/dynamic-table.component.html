@@ -1,0 +1,13 @@
+<ng-container *ngIf="tableCreation.data.statusCode == '000'">
+    <app-table [tableCreation]="tableCreation" 
+                [pageNumber]="currentPage" 
+                [sortData]="sortData" #tableID 
+                (callBack)="processCallBack($event)"></app-table>
+                
+    <app-paging *ngIf="tableCreation.showPaging" [currentPage]="currentPage"
+                [totalPage]="getTotalPage()"
+                [dataRank]="getPageRank()"
+                [totalRecord]="tableCreation.data.totalRecord"
+                [customClass]="tableCreation.customClassPaging"
+                (pagingProcess)="processPagingCallBack($event)"></app-paging>
+</ng-container>
