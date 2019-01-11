@@ -18,7 +18,6 @@ import {DateComponent} from '../dynamic-input/date/date.component';
 import {NgxDateComponent} from '../dynamic-input/ngx-date/ngx-date.component';
 import {DynamicFormRowComponent} from '../dynamic-form-row/dynamic-form-row.component';
 import {DynamicContainerTableComponent} from '../dynamic-container-table/dynamic-container-table.component';
-import {Subscription} from 'rxjs/src/Subscription';
 import {Observable} from 'rxjs/Rx';
 
 @Component({

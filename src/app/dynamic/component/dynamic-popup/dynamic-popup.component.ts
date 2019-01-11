@@ -1,7 +1,6 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {any} from 'codelyzer/util/function';
-import {interval} from 'rxjs/internal/observable/interval';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from 'rxjs/Observable';
 
 declare let $;
 
@@ -15,26 +14,28 @@ export class DynamicPopupComponent implements OnInit {
     showStatus = false;
     queue = false;
     statusPopup = 'hidePopup';
-    popupProperties = {
-        header: 'popupHeader',
-        type: 'info',
-        icon: 'glyphicon-info-sign',
-        colorClass: '',
-        eventCode: '',
-        data: any,
-        message: 'Informations'
-    };
-    tempData = {
-        header: 'popupHeader',
-        type: 'info',
-        icon: 'glyphicon-info-sign',
-        colorClass: '',
-        eventCode: '',
-        data: any,
-        message: 'Informations'
-    };
+    popupProperties;
+    tempData;
 
     constructor() {
+        this.popupProperties = {
+            header: 'popupHeader',
+            type: 'info',
+            icon: 'glyphicon-info-sign',
+            colorClass: '',
+            eventCode: '',
+            data: any,
+            message: 'Informations'
+        };
+        this.tempData = {
+            header: 'popupHeader',
+            type: 'info',
+            icon: 'glyphicon-info-sign',
+            colorClass: '',
+            eventCode: '',
+            data: any,
+            message: 'Informations'
+        };
     }
 
     ngOnInit() {
@@ -111,7 +112,7 @@ export class DynamicPopupComponent implements OnInit {
             this.queue = true;
         } else {
             this.hideModal();
-            interval(500)
+            Observable.interval(500)
                 .takeWhile(() => {
                     return this.queue == true;
                 })

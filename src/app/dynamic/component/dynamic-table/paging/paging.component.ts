@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
-import {observable} from "rxjs/symbol/observable";
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
 @Component({
 	selector: 'app-paging',
 	templateUrl: './paging.component.html'
