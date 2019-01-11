@@ -1,0 +1,39 @@
+<div *ngIf="data[fieldCreation.fieldName]" class="dp2FieldPanel {{columnCalculate}} {{getCustomClass()}}"  [style.width]="fieldCreation.width">
+    <app-dynamic-form-label-panel
+            [fieldCreation]="fieldCreation"
+            [option]="option"
+            [width]="getLabelWidth()"></app-dynamic-form-label-panel>
+    <div class="dp2InputBox {{option.labelAlign == 'left' ? 'singleLine' : ''}}" [style.width]="getInputWidth()">
+            <div class="posRelative">
+                <div class="dp2Table">
+                    <div class="dp2Row">
+                        <div class="dp2Cell sourceBox {{option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisableIf() ? 'readonly' : ''}}">
+                            <div class="source" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
+                                <ng-container *ngFor="let valueIndex of objKeys(fieldCreation.valueList)">
+                                    <div class="source_select" *ngIf="checkDestData(fieldCreation.valueList[valueIndex])" (click)="transferData(valueIndex)">
+                                        {{fieldCreation.valueList[valueIndex].display}}
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="dp2Cell iconBox">
+                            <span class="glyphicon glyphicon-transfer"></span>
+                        </div>
+                        <div class="dp2Cell sourceBox {{option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisableIf() ? 'readonly' : ''}}">
+                            <div class="destination" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
+                                <ng-container *ngFor="let dataValueIndex of objKeys(data[fieldCreation.fieldName])">
+                                    <div class="source_select" (click)="removeData(dataValueIndex)">
+                                        {{data[fieldCreation.fieldName][dataValueIndex].display}}
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="dp2Note">
+            {{fieldCreation.note}}
+        </div>
+    </div>
+</div>
+<div *ngIf="!data[fieldCreation.fieldName]">Data undefined: {{fieldCreation.fieldName}}</div>

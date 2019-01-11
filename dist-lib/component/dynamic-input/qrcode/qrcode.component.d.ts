@@ -1,0 +1,33 @@
+import { EventEmitter, OnInit } from '@angular/core';
+import { DynamicBehaviorComponent } from '../../dynamic-behavior/dynamic-behavior.component';
+import { ZXingScannerComponent } from './zxing-scanner/zxing-scanner.component';
+export declare class QrCodeComponent extends DynamicBehaviorComponent implements OnInit {
+    data: any;
+    option: any;
+    fieldCreation: any;
+    inputIndex: any;
+    rowIndex: any;
+    callBack: EventEmitter<{}>;
+    panelCallBack: EventEmitter<{}>;
+    scanner: ZXingScannerComponent;
+    columnCalculate: string;
+    objKeys: (o: {}) => string[];
+    tempValue: any;
+    selectedDevice: MediaDeviceInfo;
+    availableDevices: any;
+    scannerEnabled: boolean;
+    enableScannerString: string;
+    hideCamera: boolean;
+    constructor();
+    ngOnInit(): void;
+    addMultiVal(): void;
+    deleteMultiVal(dataIndex: any): void;
+    processKeyUp(event: any, action: any, dataIndex: any): boolean;
+    processKeyDown(event: any, action: any, dataIndex: any): void;
+    processCallBackKeyPress(event: any, action: any, dataIndex: any): boolean;
+    processCall(data: any): void;
+    processPanelCallBack(): void;
+    displayCameras(cameras: MediaDeviceInfo[]): void;
+    handleQrCodeResult(data: any): void;
+    toggleScanner(): void;
+}

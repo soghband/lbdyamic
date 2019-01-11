@@ -1,0 +1,53 @@
+<div class="datePickerPanel">
+  <div class="datePickerAlign">
+    <div class="monthYearPanel">
+      <div class="monthYearDisplay">
+        <div class="monthYearAction" (click)="actionYearSelect()">{{monthListLong[month]}} {{year}} <span class="glyphicon glyphicon-collapse-down"></span></div>
+        <div class="prev" (click)="actionPrev()"><span class="glyphicon glyphicon-chevron-left"></span></div>
+        <div class="next" (click)="actionNext()"><span class="glyphicon glyphicon-chevron-right"></span></div>
+      </div>
+    </div>
+    <div class="dateTablePanel {{showDate ? 'showPanel':'hidePanel'}}">
+      <table class="dateTable">
+        <tr>
+          <th>
+            Sun
+          </th>
+          <th>
+            Mon
+          </th>
+          <th>
+            Thu
+          </th>
+          <th>
+            Wed
+          </th>
+          <th>
+            Tue
+          </th>
+          <th>
+            Fri
+          </th>
+          <th>
+            Sat
+          </th>
+        </tr>
+        <ng-container *ngFor="let dateRow of dateList">
+          <tr>
+            <td *ngFor="let date of dateRow">
+              <div class="dateBtn{{month != date.month? ' otherMonth' : ''}}" [innerHTML]="date.day"></div>
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+    <div class="monthTablePanel {{showMonth ? 'showPanel':'hidePanel'}}">
+      <div *ngFor="let monthNameIndex of objKeys(monthListLong)" class="monthBtn" (click)="selectMonth(monthNameIndex)">{{monthListLong[monthNameIndex]}}</div>
+    </div>
+    <div class="yearTablePanel {{showYear ? 'showPanel':'hidePanel'}}">
+      <div *ngFor="let year of yearList" class="yearBtn" (click)="selectYear(year)">{{year}}</div>
+      <div class="prevYear" (click)="actionPrevYear()"><span class="glyphicon glyphicon-chevron-left"></span></div>
+      <div class="nextYear" (click)="actionNextYear()"><span class="glyphicon glyphicon-chevron-right"></span></div>
+    </div>
+  </div>
+</div>

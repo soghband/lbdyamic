@@ -41,7 +41,7 @@ const routes: Routes = [
         MalihuScrollbarModule.forRoot(),
     ],
     exports: [
-
+        LightBreakDynamicFormModule
     ],
     providers: [],
     bootstrap: [AppComponent]

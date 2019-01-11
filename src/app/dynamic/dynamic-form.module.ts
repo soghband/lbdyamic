@@ -22,7 +22,6 @@ import {TableComponent} from './component/dynamic-table/table/table.component';
 import {PagingComponent} from './component/dynamic-table/paging/paging.component';
 import {DynamicBehaviorComponent} from './component/dynamic-behavior/dynamic-behavior.component';
 import {ErrorMsgBubbleComponent} from './component/error-msg-bubble/error-msg-bubble.component';
-import {LockScreenServiceP2} from '../service/lock-screen.service';
 import {ButtonComponent} from './component/dynamic-input/button/button.component';
 import {DynamicTabComponent} from './component/dynamic-tab/dynamic-tab.component';
 import {DynamicPopupComponent} from './component/dynamic-popup/dynamic-popup.component';
@@ -42,70 +41,99 @@ import {NgxMyDatePickerModule} from 'ngx-mydatepicker';
 import {DynamicContainerTableComponent} from './component/dynamic-container-table/dynamic-container-table.component';
 import {DynamicFormLabelPanelComponent} from './component/dynamic-form-label-panel/dynamic-form-label-panel.component';
 import {DynamicFormRowComponent} from './component/dynamic-form-row/dynamic-form-row.component';
+import {LockScreenServiceP2} from './service/lock-screen.service';
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		HttpClientModule,
-		HttpModule,
-		MalihuScrollbarModule,
-		ZXingScannerModule,
-		MatDatepickerModule,
-		NgxMyDatePickerModule.forRoot()
-	],
-	declarations: [
-		DynamicInputComponent,
-		LabelComponent,
-		TextBoxComponent,
-		InputComponent,
-		DynamicFormComponent,
-		CheckBoxComponent,
-		TextAreaComponent,
-		SelectBoxComponent,
-		DynamicContainerComponent,
-		HiddenComponent,
-		FileUploadComponent,
-		ImageComponent,
-		AutoCompleteComponent,
-		DynamicTableComponent,
-		TableComponent,
-		PagingComponent,
-		DynamicBehaviorComponent,
-		ErrorMsgBubbleComponent,
-		ButtonComponent,
-		DynamicTabComponent,
-		DynamicPopupComponent,
-		SwappingBoxComponent,
-		MapValueComponent,
-		QrCodeComponent,
-		RadioComponent,
-		P2PanelComponent,
-		DynamicFormFrameComponent,
-		DateComponent,
-		DatePickerComponent,
-		NgxDateComponent,
-		DynamicContainerTableComponent,
-		DynamicFormLabelPanelComponent,
-		DynamicFormRowComponent,
-	],
-	exports: [
-		DynamicInputComponent,
-		InputComponent,
-		DynamicFormComponent,
-		DynamicTableComponent,
-		PagingComponent,
-		ErrorMsgBubbleComponent,
-		DynamicTabComponent,
-		DynamicPopupComponent,
-		P2PanelComponent
-	],
-	schemas: [
-		CUSTOM_ELEMENTS_SCHEMA,
-		NO_ERRORS_SCHEMA
-	],
-	providers: [
-		LockScreenServiceP2
-	]
+imports: [
+	CommonModule,
+	FormsModule,
+	HttpClientModule,
+	HttpModule,
+	MalihuScrollbarModule,
+	ZXingScannerModule,
+	MatDatepickerModule,
+	NgxMyDatePickerModule.forRoot()
+],
+declarations: [
+	DynamicInputComponent,
+	LabelComponent,
+	TextBoxComponent,
+	InputComponent,
+	DynamicFormComponent,
+	CheckBoxComponent,
+	TextAreaComponent,
+	SelectBoxComponent,
+	DynamicContainerComponent,
+	HiddenComponent,
+	FileUploadComponent,
+	ImageComponent,
+	AutoCompleteComponent,
+	DynamicTableComponent,
+	TableComponent,
+	PagingComponent,
+	DynamicBehaviorComponent,
+	ErrorMsgBubbleComponent,
+	ButtonComponent,
+	DynamicTabComponent,
+	DynamicPopupComponent,
+	SwappingBoxComponent,
+	MapValueComponent,
+	QrCodeComponent,
+	RadioComponent,
+	P2PanelComponent,
+	DynamicFormFrameComponent,
+	DateComponent,
+	DatePickerComponent,
+	NgxDateComponent,
+	DynamicContainerTableComponent,
+	DynamicFormLabelPanelComponent,
+	DynamicFormRowComponent,
+],
+exports: [
+	DynamicInputComponent,
+	LabelComponent,
+	TextBoxComponent,
+	InputComponent,
+	DynamicFormComponent,
+	CheckBoxComponent,
+	TextAreaComponent,
+	SelectBoxComponent,
+	DynamicContainerComponent,
+	HiddenComponent,
+	FileUploadComponent,
+	ImageComponent,
+	AutoCompleteComponent,
+	DynamicTableComponent,
+	TableComponent,
+	PagingComponent,
+	DynamicBehaviorComponent,
+	ErrorMsgBubbleComponent,
+	ButtonComponent,
+	DynamicTabComponent,
+	DynamicPopupComponent,
+	SwappingBoxComponent,
+	MapValueComponent,
+	QrCodeComponent,
+	RadioComponent,
+	P2PanelComponent,
+	DynamicFormFrameComponent,
+	DateComponent,
+	DatePickerComponent,
+	NgxDateComponent,
+	DynamicContainerTableComponent,
+	DynamicFormLabelPanelComponent,
+	DynamicFormRowComponent,
+],
+schemas: [
+	CUSTOM_ELEMENTS_SCHEMA,
+	NO_ERRORS_SCHEMA
+],
+providers: []
 })
 export class LightBreakDynamicFormModule {
+	static forRoot() {
+		return {
+			ngModule: LightBreakDynamicFormModule,
+			providers: [ LockScreenServiceP2 ]
+		}
+	}
 }

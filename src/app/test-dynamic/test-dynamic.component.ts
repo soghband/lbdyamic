@@ -3,10 +3,10 @@ import {any} from "codelyzer/util/function";
 import {ErrorMsgBubbleComponent} from "../dynamic/component/error-msg-bubble/error-msg-bubble.component";
 import {DynamicFormComponent} from "../dynamic/component/dynamic-form/dynamic-form.component";
 import {Observable} from "rxjs/Observable";
-import {LockScreenServiceP2} from "../service/lock-screen.service";
 import {DynamicTabComponent} from "../dynamic/component/dynamic-tab/dynamic-tab.component";
 import {DynamicPopupComponent} from "../dynamic/component/dynamic-popup/dynamic-popup.component";
 import {DynamicTableComponent} from '../dynamic/component/dynamic-table/dynamic-table.component';
+import {LockScreenServiceP2} from '../dynamic';
 
 @Component({
 	selector: 'app-test-dynamic',

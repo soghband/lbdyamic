@@ -1,0 +1,30 @@
+<div id="pagingPanel" class="{{customClass ? customClass: ''}}">
+    <div class="totalRecord">{{getTotalRecordStr()}}</div>
+    <div class="pageControl">
+        <div class="first" id="arrowLeftFirst" (click)="goFirst()">
+            <span class="glyphicon glyphicon-fast-backward"></span>
+            <!--<div class="arrowLeft"></div>-->
+            <!--<div class="arrowLeft innerLeftArrow"></div>-->
+        </div>
+        <div class="previous" id="arrowLeft" (click)="goPrev()">
+            <span class="glyphicon glyphicon-backward"></span>
+            <!--<div class="arrowLeft"></div>-->
+        </div>
+        <input class="currentPage" id="inputRow" type="text" [(ngModel)]="currentPage" max="{{totalPage}}" min="1"
+               [style.width]="inputWidth"
+               (keydown)="checkInput($event)" (focus)="keepValue()" (blur)="checkValue()"/>
+        <div class="totalRow">
+            / {{checkTotalPage()}}
+        </div>
+        <div class="next" id="arrowNext" (click)="goNext()">
+            <span class="glyphicon glyphicon-forward"></span>
+            <!--<div class="arrowRight"></div>-->
+        </div>
+        <div class="last" id="arrowNextLast" (click)="goLast()">
+            <span class="glyphicon glyphicon-fast-forward"></span>
+            <!--<div class="arrowRight innerRightArrow"></div>-->
+            <!--<div class="arrowRight"></div>-->
+        </div>
+    </div>
+</div>
+

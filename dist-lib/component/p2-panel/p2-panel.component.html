@@ -1,0 +1,13 @@
+<div id="{{id}}" class="p2Panel">
+  <div class="p2PanelAlign">
+    <div class="p2Header">
+      <div>{{header}}</div>
+      <div *ngIf="showCloseBtn">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+      </div>
+    </div>
+    <div class="p2ContentPanel p2ContentPanelGray">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
