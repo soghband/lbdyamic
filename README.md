@@ -1,4 +1,4 @@
-*** Support Angular 4.4.7 ***
+*** Support Angular 4.4.6 ***
 
 # LBDynamic
 
