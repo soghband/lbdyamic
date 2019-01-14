@@ -26,7 +26,7 @@ import {ButtonComponent} from './component/dynamic-input/button/button.component
 import {DynamicTabComponent} from './component/dynamic-tab/dynamic-tab.component';
 import {DynamicPopupComponent} from './component/dynamic-popup/dynamic-popup.component';
 import {SwappingBoxComponent} from './component/dynamic-input/swapping-box/swapping-box.component';
-import {MalihuScrollbarModule} from 'ngx-malihu-scrollbar';
+import {MalihuScrollbarModule, MalihuScrollbarService} from 'ngx-malihu-scrollbar';
 import {MapValueComponent} from './component/dynamic-input/map-value/map-value.component';
 import {QrCodeComponent} from './component/dynamic-input/qrcode/qrcode.component';
 import {ZXingScannerModule} from './component/dynamic-input/qrcode/zxing-scanner/zxing-scanner.module';
@@ -121,7 +121,7 @@ exports: [
 	NgxDateComponent,
 	DynamicContainerTableComponent,
 	DynamicFormLabelPanelComponent,
-	DynamicFormRowComponent,
+	DynamicFormRowComponent
 ],
 schemas: [
 	CUSTOM_ELEMENTS_SCHEMA,
@@ -133,7 +133,7 @@ export class LightBreakDynamicFormModule {
 	static forRoot() {
 		return {
 			ngModule: LightBreakDynamicFormModule,
-			providers: [ LockScreenServiceP2 ]
+			providers: [ LockScreenServiceP2,MalihuScrollbarService]
 		}
 	}
 }

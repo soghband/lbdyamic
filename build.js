@@ -1,14 +1,14 @@
 const fsextra = require('fs-extra');
 const { exec } = require('child_process');
 
-fsextra.copy('./src/app/dynamic', './dist-lib', err => {
+fsextra.copy('./src/app/dynamic', '../LBDynamic-lib/dist-lib', err => {
   if (err) return console.error(err);
   console.log('Copied files');
   createDeclarations();
 });
 
 function createDeclarations() {
-  exec('cd dist-lib && tsc index.ts --declaration', () => {
+  exec('cd ../LBDynamic-lib/dist-lib && tsc index.ts --declaration', () => {
     console.log('Generated declarations (and some JS files...)');
     createPackageJson();
   });
@@ -42,7 +42,7 @@ function createPackageJson() {
     "homepage": "https://github.com/soghband/lbdynamic#readme",
     "types": "index.d.ts"
   };
-  fsextra.writeJson('./dist-lib/package.json', packageJSON, {spaces: 2}, err => {
+  fsextra.writeJson('../LBDynamic-lib/dist-lib/package.json', packageJSON, {spaces: 2}, err => {
     if (err) return console.error(err);
     console.log('Created package.json');
   });
