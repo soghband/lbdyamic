@@ -99,6 +99,7 @@ export class AutoCompleteComponent extends DynamicBehaviorComponent implements O
 	processFocus(event, action, dataIndex) {
 		if ((this.fieldCreation.readonly == undefined || (this.fieldCreation.readonly != undefined && this.fieldCreation.readonly == false))
 			&& this.option.mode != "view"
+			&& !this.getDisableIf()
 			&& (this.option.enableRowIndex == undefined || (this.option.enableRowIndex != undefined && (this.option.enableRowIndex[this.rowIndex] == undefined || this.option.enableRowIndex[this.rowIndex] == true)))) {
 			this.selectIndex = 0;
 			this.filterAutoComplete(dataIndex);
@@ -315,23 +316,30 @@ export class AutoCompleteComponent extends DynamicBehaviorComponent implements O
     refineValueList() {
 		let newValueList = [];
 		for (let listIndex in this.fieldCreation.valueList) {
-			if (this.fieldCreation.valueList[listIndex].display != "" && this.fieldCreation.valueList[listIndex].value != "") {
-                newValueList.push({
+			if (this.fieldCreation.disableRefined == undefined || this.fieldCreation.disableRefined == false) {
+				if (this.fieldCreation.valueList[listIndex].display != "" && this.fieldCreation.valueList[listIndex].value != "") {
+					newValueList.push({
+						display:this.fieldCreation.valueList[listIndex].display,
+						value:this.fieldCreation.valueList[listIndex].value
+					});
+				}
+				if (this.fieldCreation.valueList[listIndex].display == "" && this.fieldCreation.valueList[listIndex].value != "") {
+					newValueList.push({
+						display:this.fieldCreation.valueList[listIndex].value,
+						value:this.fieldCreation.valueList[listIndex].value
+					});
+				}
+				if (this.fieldCreation.valueList[listIndex].value == "" && this.fieldCreation.valueList[listIndex].display != "") {
+					newValueList.push({
+						display:this.fieldCreation.valueList[listIndex].display,
+						value:this.fieldCreation.valueList[listIndex].display
+					});
+				}
+			} else {
+				newValueList.push({
 					display:this.fieldCreation.valueList[listIndex].display,
 					value:this.fieldCreation.valueList[listIndex].value
 				});
-			}
-			if (this.fieldCreation.valueList[listIndex].display == "" && this.fieldCreation.valueList[listIndex].value != "") {
-                newValueList.push({
-					display:this.fieldCreation.valueList[listIndex].value,
-					value:this.fieldCreation.valueList[listIndex].value
-				});
-			}
-			if (this.fieldCreation.valueList[listIndex].value == "" && this.fieldCreation.valueList[listIndex].display != "") {
-                newValueList.push({
-                    display:this.fieldCreation.valueList[listIndex].display,
-                    value:this.fieldCreation.valueList[listIndex].display
-                });
 			}
 		}
 		this.fieldCreation.valueList = newValueList;
