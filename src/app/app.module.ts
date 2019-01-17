@@ -36,7 +36,7 @@ const routes: Routes = [
         FormsModule,
         HttpClientModule,
         HttpModule,
-        LightBreakDynamicFormModule,
+        [LightBreakDynamicFormModule.forRoot()],
         [RouterModule.forRoot(routes)],
         MalihuScrollbarModule.forRoot(),
     ],

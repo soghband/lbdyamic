@@ -691,8 +691,96 @@ export class TestDynamicComponent implements OnInit {
                 ],
                 testMapValue: [
                     {
-                        display: "testD1",
-                        value: "testV1"
+                        display: "testD2",
+                        value: "testV2"
+                    }
+                ],
+                testQrCode: [],
+                testDate: [""]
+            },{
+                testTextBox: [""],
+                testAutoComplete: [
+                    {
+                        display:"1",
+                        value:"ID1"
+                    }
+                ],
+                testTextBox2: ["testInput1Val2"],
+                testTextArea: ["testAreaInput1Val"],
+                testTextArea2: ["testAreaInput1Val2"],
+                testLabel: ["testLabelVal"],
+                testCheckBox: {
+                    pop:true
+                },
+                testRadio : ["d1","d2"],
+                testSelectBox:[
+                    "inactive",
+                    "active"
+                ],
+                testImage: {
+                    currentFile: [""],
+                    selectFile: any,
+                },
+                testUpload: {
+                    currentFile: [],
+                    selectFile: any,
+                },
+                testButton: [""],
+                testCustomStyle: ["testCustomStyle"],
+                testSwapping: [
+                    {
+                        display:"fff",
+                        value:"ff"
+                    }
+                ],
+                testMapValue: [
+                    {
+                        display: "testD3",
+                        value: "testV3"
+                    }
+                ],
+                testQrCode: [],
+                testDate: [""]
+            },{
+                testTextBox: [""],
+                testAutoComplete: [
+                    {
+                        display:"1",
+                        value:"ID1"
+                    }
+                ],
+                testTextBox2: ["testInput1Val2"],
+                testTextArea: ["testAreaInput1Val"],
+                testTextArea2: ["testAreaInput1Val2"],
+                testLabel: ["testLabelVal"],
+                testCheckBox: {
+                    pop:true
+                },
+                testRadio : ["d1","d2"],
+                testSelectBox:[
+                    "inactive",
+                    "active"
+                ],
+                testImage: {
+                    currentFile: [""],
+                    selectFile: any,
+                },
+                testUpload: {
+                    currentFile: [],
+                    selectFile: any,
+                },
+                testButton: [""],
+                testCustomStyle: ["testCustomStyle"],
+                testSwapping: [
+                    {
+                        display:"fff",
+                        value:"ff"
+                    }
+                ],
+                testMapValue: [
+                    {
+                        display: "testD4",
+                        value: "testV4"
                     }
                 ],
                 testQrCode: [],
@@ -1376,5 +1464,9 @@ export class TestDynamicComponent implements OnInit {
     testFormTableGetInput() {
 		let input = this.dynamicFormTable.getDynamicInput("testTextBox");
 		console.log(input);
+	}
+
+	testDeleteMulti() {
+		this.dynamicFormTable.deleteRow([1,2]);
 	}
 }
