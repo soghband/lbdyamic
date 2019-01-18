@@ -342,6 +342,7 @@ export class DynamicFormComponent implements OnInit {
             let containerData = this.formCreation.form.containerList[containerIndex];
             for (let fieldIndex in containerData.fieldList) {
                 if (containerData.fieldList[fieldIndex].fieldName == fieldName) {
+                    let fieldType = containerData.fieldList[fieldIndex].type;
                     let container = null;
                     if (this.formCreation.form.option.displayMode == "table") {
                         container = containerListRef;
@@ -350,7 +351,13 @@ export class DynamicFormComponent implements OnInit {
                     }
                     if (container != undefined) {
                         let input = container.getDynamicInput(fieldIndex);
-                        return input;
+                        if (fieldType == "hidden" && this.formCreation.form.option.displayMode == "table" && input == undefined) {
+                            return {
+                                type:"hidden"
+                            }
+                        } else {
+                            return input;
+                        }
                     }
                     return null;
                 }
@@ -872,7 +879,7 @@ export class DynamicFormComponent implements OnInit {
         }
     }
 
-    onFormReady(rowNum,data=null,timeout = 15000) {
+    onFormReady(rowNum,data=null,timeout = 15000, debug = false) {
         if (this.startMilliseconds == null) {
             let dateStart = new Date();
             this.startMilliseconds = dateStart.getTime();
@@ -893,7 +900,10 @@ export class DynamicFormComponent implements OnInit {
                                 checkField.push(dynamicInput);
                             }
                         }
-                        if (checkField.indexOf(null) > -1) {
+                        if (debug) {
+                            console.log(checkField);
+                        }
+                        if (checkField.indexOf(null) > -1 || checkField.indexOf(undefined) > -1) {
                             readyStatus = false;
                         } else {
                             readyStatus = true;

@@ -14,12 +14,12 @@ import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
     {
-        path: 'test-dynamic',
-        component: TestDynamicComponent
+        path: '',
+        component: P2UiEditorComponent
     },
     {
-        path: 'ui-editor',
-        component: P2UiEditorComponent
+        path: 'test',
+        component: TestDynamicComponent
     }
 
 ];
