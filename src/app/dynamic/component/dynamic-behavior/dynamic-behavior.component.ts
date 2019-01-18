@@ -43,23 +43,12 @@ export class DynamicBehaviorComponent {
 		}
 		return "";
 	}
-	getDisableIf() {
-		// let normalType = [
-		// 	'textBox',
-		// 	'textArea',
-		// 	'label',
-		// 	'hidden',
-		// 	'number',
-		// 	'selectBox',
-		// 	'radio',
-		// 	'autoComplete'];
-		for (let fieldName in this.option.disableIf) {
-			// if (normalType.indexOf(this.fieldCreation.type) > -1) {
-				let data = this.data[fieldName][0];
-				if (String(data).match(this.option.disableIf[fieldName])) {
-					return true;
-				}
-			// }
+	getDisable() {
+		if (this.option.disableList != undefined && this.option.disableList[this.rowIndex] != undefined
+			&& this.option.disableList[this.rowIndex][this.fieldCreation.fieldName] != undefined) {
+
+			return this.option.disableList[this.rowIndex][this.fieldCreation.fieldName];
+
 		}
 		return false;
 	}

@@ -378,7 +378,21 @@ export class TestDynamicComponent implements OnInit {
                 mode: "edit",
                 className: "defaultDynamicForm",
                 labelAlign: "left",
-				enableRowIndex: [true]
+				enableRowIndex: [true],
+				disableList: [
+                    {
+                        testTextBox:true
+                    },
+                    {
+                        testTextBox:false
+                    },
+                    {
+                        testTextBox:true
+                    },
+                    {
+                        testTextBox:true
+                    }
+                ]
             },
             containerList : [
                 {

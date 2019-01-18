@@ -16,7 +16,7 @@
         </ng-container>
         <div *ngIf="option.mode != 'view'" class="upload">
             <input type="file" class="fullWidth" id="id_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}{{(dataIndex > 0 ? '_'+dataIndex:'')}}" name="{{fieldCreation.fieldName}}"
-                   [disabled]="option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisableIf()" (change)="handleFileSelect($event)"
+                   [disabled]="option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable()" (change)="handleFileSelect($event)"
                    [multiple]="fieldCreation.multiValue"/>
         </div>
         <div class="dp2Note">

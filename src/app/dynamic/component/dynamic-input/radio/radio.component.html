@@ -13,7 +13,7 @@
                                name="{{fieldCreation.fieldName}}_{{dataIndex}}_{{rowIndex}}"
                                value="{{fieldCreation.valueList[listIndex].value}}"
                                [(ngModel)]="data[fieldCreation.fieldName][dataIndex]"
-                               [disabled]="option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisableIf()"
+                               [disabled]="option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable()"
                                (change)="processChange($event,'change',fieldCreation.valueList[listIndex])">
                         <label for="id_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}_{{dataIndex}}_{{listIndex}}_{{rowIndex}}">{{fieldCreation.valueList[listIndex].display}}</label>
 

@@ -6,7 +6,7 @@
   <div class="dp2InputBox {{option.labelAlign == 'left' ? 'singleLine' : ''}}" [style.width]="getInputWidth()">
     <ng-container *ngFor="let valueListIndex of objKeys(fieldCreation.valueList)">
       <div class="posRelative">
-        <div class="btn-style-dynamic {{(fieldCreation.smallButton ? 'btn-small' : '')}} {{(fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisableIf() ? 'btn-disable' : '')}}" id="id_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}{{(valueListIndex > 0 ? '_'+valueListIndex:'')}}" (click)="processClick($event,'click',valueListIndex,fieldCreation.valueList[valueListIndex])"
+        <div class="btn-style-dynamic {{(fieldCreation.smallButton ? 'btn-small' : '')}} {{(fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable() ? 'btn-disable' : '')}}" id="id_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}{{(valueListIndex > 0 ? '_'+valueListIndex:'')}}" (click)="processClick($event,'click',valueListIndex,fieldCreation.valueList[valueListIndex])"
              (mouseenter)="processCallBack($event,'mouseEnter',valueListIndex)"
              (mouseleave)="processCallBack($event,'mouseLeave',valueListIndex)" [innerHTML]="fieldCreation.valueList[valueListIndex].display"></div>
       </div>

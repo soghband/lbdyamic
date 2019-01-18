@@ -99,7 +99,7 @@ export class AutoCompleteComponent extends DynamicBehaviorComponent implements O
 	processFocus(event, action, dataIndex) {
 		if ((this.fieldCreation.readonly == undefined || (this.fieldCreation.readonly != undefined && this.fieldCreation.readonly == false))
 			&& this.option.mode != "view"
-			&& !this.getDisableIf()
+			&& !this.getDisable()
 			&& (this.option.enableRowIndex == undefined || (this.option.enableRowIndex != undefined && (this.option.enableRowIndex[this.rowIndex] == undefined || this.option.enableRowIndex[this.rowIndex] == true)))) {
 			this.selectIndex = 0;
 			this.filterAutoComplete(dataIndex);
@@ -261,7 +261,8 @@ export class AutoCompleteComponent extends DynamicBehaviorComponent implements O
 
 	processBlur(event, action, dataIndex) {
         let validate = true;
-		if (!String(this.data[this.fieldCreation.fieldName][dataIndex].display).match(this.fieldCreation.valuePattern)) {
+		if (!String(this.data[this.fieldCreation.fieldName][dataIndex].display).match(this.fieldCreation.valuePattern)
+			&& this.getDisable() == false) {
             event.srcElement.focus();
             validate = false
         }
