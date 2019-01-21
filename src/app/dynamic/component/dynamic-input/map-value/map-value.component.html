@@ -25,7 +25,7 @@
                                    id="id_display_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}{{(dataIndex > 0 ? '_'+dataIndex:'')}}"
                                    name="{{fieldCreation.fieldName}}"
                                    [(ngModel)]="data[fieldCreation.fieldName][dataIndex].display"
-                                   [readonly]="option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable()"
+                                   [readonly]="getDisable()"
                                    (focus)="processCallBack($event,'focus',dataIndex)"
                                    (blur)="processCallBack($event,'blur',dataIndex)"
                                    (keyup)="processKeyUp($event,'keyup',dataIndex)"
@@ -42,7 +42,7 @@
                                    id="id_value_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}{{(dataIndex > 0 ? '_'+dataIndex:'')}}"
                                    name="{{fieldCreation.fieldName}}"
                                    [(ngModel)]="data[fieldCreation.fieldName][dataIndex].value"
-                                   [readonly]="option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable()"
+                                   [readonly]="getDisable()"
                                    (focus)="processCallBack($event,'focus',dataIndex)"
                                    (blur)="processCallBack($event,'blur',dataIndex)"
                                    (keyup)="processKeyUp($event,'keyup',dataIndex)"
@@ -61,7 +61,7 @@
             <div class="dp2Note">
                 {{fieldCreation.note}}
             </div>
-            <div *ngIf="!(option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable())" class="addBtn" (click)="addMultiVal()"><span
+            <div *ngIf="!(getDisable())" class="addBtn" (click)="addMultiVal()"><span
                     class="glyphicon glyphicon-plus"></span></div>
         </div>
     </div>

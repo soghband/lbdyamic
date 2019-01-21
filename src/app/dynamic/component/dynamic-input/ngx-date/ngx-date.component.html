@@ -14,7 +14,7 @@
                        id="id_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}{{(dataIndex > 0 ? '_'+dataIndex:'')}}"
                        name="{{fieldCreation.fieldName}}"
                        [(ngModel)]="data[fieldCreation.fieldName][dataIndex]"
-                       [readonly]="option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable()"
+                       [readonly]="getDisable()"
                        (focus)="processCallBack($event,'focus',dataIndex)"
                        (blur)="processBlur($event,'blur',dataIndex)"
                        (keyup)="processKeyUp($event,'keyup',dataIndex)"
@@ -24,9 +24,9 @@
                        (change)="processCallBack($event,'change',dataIndex)"
                        (dateChanged)="onDateChanged($event,dataIndex)"
                        maxlength="10"/>
-                <div class="dateToggle {{option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) ? 'dateToggleDisable':''}}" (click)="option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable() ? disableToggle():dp.toggleCalendar()"><span class="glyphicon glyphicon-calendar"></span>
+                <div class="dateToggle {{option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) ? 'dateToggleDisable':''}}" (click)="getDisable() ? disableToggle():dp.toggleCalendar()"><span class="glyphicon glyphicon-calendar"></span>
                 </div>
-                <div *ngIf="fieldCreation.multiValue && !(option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable())"
+                <div *ngIf="fieldCreation.multiValue && !(getDisable())"
                      class="deleteBtnWithDate"
                      (click)="deleteMultiVal(dataIndex)"><span class="glyphicon glyphicon-minus"></span></div>
             </div>
@@ -34,7 +34,7 @@
         <div class="dp2Note">
             {{fieldCreation.note}}
         </div>
-        <div *ngIf="fieldCreation.multiValue && !(option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable())" class="addBtn"
+        <div *ngIf="fieldCreation.multiValue && !(getDisable())" class="addBtn"
              (click)="addMultiVal()"><span
                 class="glyphicon glyphicon-plus"></span></div>
     </div>

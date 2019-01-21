@@ -9,7 +9,7 @@
                 <input type="{{fieldCreation.type == 'textBox' ? 'textbox' : 'number'}}" class="fullWidth {{fieldCreation.require && data[fieldCreation.fieldName][dataIndex] == '' ? 'require' : ''}}" id="id_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}{{(dataIndex > 0 ? '_'+dataIndex:'')}}"
                        name="{{fieldCreation.fieldName}}"
                        [(ngModel)]="data[fieldCreation.fieldName][dataIndex]"
-                       [readonly]="option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable()"
+                       [readonly]="getDisable()"
                        (focus)="processCallBack($event,'focus',dataIndex)"
                        (blur)="processBlur($event,'blur',dataIndex)"
                        (keyup)="processKeyUp($event,'keyup',dataIndex)"
@@ -20,14 +20,14 @@
                        maxlength="{{fieldCreation.maxLength}}"
                        max="{{fieldCreation.max}}"
                        min="{{fieldCreation.min}}"/>
-                <div *ngIf="fieldCreation.multiValue && !(option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable())" class="deleteBtn"
+                <div *ngIf="fieldCreation.multiValue && !(getDisable())" class="deleteBtn"
                      (click)="deleteMultiVal(dataIndex)"><span class="glyphicon glyphicon-minus"></span></div>
             </div>
         </ng-container>
         <div class="dp2Note">
             {{fieldCreation.note}}
         </div>
-        <div *ngIf="fieldCreation.multiValue && !(option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable())" class="addBtn" (click)="addMultiVal()"><span
+        <div *ngIf="fieldCreation.multiValue && !(getDisable())" class="addBtn" (click)="addMultiVal()"><span
                 class="glyphicon glyphicon-plus"></span></div>
     </div>
 </div>

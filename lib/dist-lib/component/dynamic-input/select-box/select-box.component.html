@@ -9,7 +9,7 @@
                 <ng-container *ngIf="checkValueList(fieldCreation.valueList)">
                     <select class="select-style-custom {{fieldCreation.widthType == 'full' ?  'fullWidth' : ''}} {{checkRequire(dataIndex)}}"  id="id_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}{{(dataIndex > 0 ? '_'+dataIndex:'')}}"
                             [(ngModel)]="data[fieldCreation.fieldName][dataIndex]"
-                            [disabled]="option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisableIf()"
+                            [disabled]="getDisable()"
                             (change)="processChange($event,'change',dataIndex)">
                         <option *ngFor="let selectRow of fieldCreation.valueList" value="{{selectRow.value}}">{{selectRow.display}}</option>
                     </select>

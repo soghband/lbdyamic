@@ -7,7 +7,7 @@
             <div class="posRelative">
                 <div class="dp2Table">
                     <div class="dp2Row">
-                        <div class="dp2Cell sourceBox {{option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable() ? 'readonly' : ''}}">
+                        <div class="dp2Cell sourceBox {{getDisable() ? 'readonly' : ''}}">
                             <div class="source" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
                                 <ng-container *ngFor="let valueIndex of objKeys(fieldCreation.valueList)">
                                     <div class="source_select" *ngIf="checkDestData(fieldCreation.valueList[valueIndex])" (click)="transferData(valueIndex)">
@@ -19,7 +19,7 @@
                         <div class="dp2Cell iconBox">
                             <span class="glyphicon glyphicon-transfer"></span>
                         </div>
-                        <div class="dp2Cell sourceBox {{option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisable() ? 'readonly' : ''}}">
+                        <div class="dp2Cell sourceBox {{getDisable() ? 'readonly' : ''}}">
                             <div class="destination" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
                                 <ng-container *ngFor="let dataValueIndex of objKeys(data[fieldCreation.fieldName])">
                                     <div class="source_select" (click)="removeData(dataValueIndex)">

@@ -44,12 +44,15 @@ export class DynamicBehaviorComponent {
 		return "";
 	}
 	getDisable() {
+		let check = false;
+		if (this.option.mode == 'view' || this.fieldCreation.readonly || (this.option.enableRowIndex && this.option.enableRowIndex[this.rowIndex] == false)) {
+			check = true;
+		}
 		if (this.option.disableList != undefined && this.option.disableList[this.rowIndex] != undefined
 			&& this.option.disableList[this.rowIndex][this.fieldCreation.fieldName] != undefined) {
-
-			return this.option.disableList[this.rowIndex][this.fieldCreation.fieldName];
+			check = this.option.disableList[this.rowIndex][this.fieldCreation.fieldName];
 
 		}
-		return false;
+		return check;
 	}
 }

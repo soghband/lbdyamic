@@ -122,7 +122,8 @@ export class TextBoxComponent extends DynamicBehaviorComponent implements OnInit
 	}
 	processBlur(event, action, dataIndex) {
 		let validate = true;
-        if (!String(this.data[this.fieldCreation.fieldName][dataIndex]).match(this.fieldCreation.valuePattern)) {
+        if (!String(this.data[this.fieldCreation.fieldName][dataIndex]).match(this.fieldCreation.valuePattern)
+			&& this.getDisable() == false) {
         	event.srcElement.focus();
             validate = false;
 		}

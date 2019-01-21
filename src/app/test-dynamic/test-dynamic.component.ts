@@ -381,7 +381,7 @@ export class TestDynamicComponent implements OnInit {
 				enableRowIndex: [true],
 				disableList: [
                     {
-                        testTextBox:true
+                        testTextBox:false
                     },
                     {
                         testTextBox:false

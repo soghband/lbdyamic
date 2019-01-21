@@ -11,7 +11,7 @@
                        id="id_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}{{(dataIndex > 0 ? '_'+dataIndex:'')}}"
                        name="{{fieldCreation.fieldName}}"
                        [(ngModel)]="data[fieldCreation.fieldName][dataIndex]"
-                       [readonly]="option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisableIf()"
+                       [readonly]="getDisable()"
                        (focus)="processCallBack($event,'focus',dataIndex)"
                        (blur)="processBlur($event,'blur',dataIndex)"
                        (keyup)="processKeyUp($event,'keyup',dataIndex)"
@@ -21,7 +21,7 @@
                        (change)="processCallBack($event,'change',dataIndex)" maxlength="{{fieldCreation.maxLength}}"/>
                 <div class="dateToggle" (click)="datePicker.open()"><span class="glyphicon glyphicon-calendar"></span></div>
                 <app-date-picker></app-date-picker>
-                <div *ngIf="fieldCreation.multiValue && !(option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisableIf())"
+                <div *ngIf="fieldCreation.multiValue && !(getDisable())"
                      class="deleteBtnWithDate"
                      (click)="deleteMultiVal(dataIndex)"><span class="glyphicon glyphicon-minus"></span></div>
             </div>
@@ -29,7 +29,7 @@
         <div class="dp2Note">
             {{fieldCreation.note}}
         </div>
-        <div *ngIf="fieldCreation.multiValue && !(option.mode == 'view' || fieldCreation.readonly || (option.enableRowIndex && option.enableRowIndex[rowIndex] == false) || getDisableIf())" class="addBtn"
+        <div *ngIf="fieldCreation.multiValue && !(getDisable())" class="addBtn"
              (click)="addMultiVal()"><span
                 class="glyphicon glyphicon-plus"></span></div>
     </div>
