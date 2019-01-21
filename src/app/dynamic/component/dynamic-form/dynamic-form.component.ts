@@ -856,9 +856,21 @@ export class DynamicFormComponent implements OnInit {
         this.formCreation.form.option.enableRowIndex[rowIndex] = false;
     }
     disableField(rowIndex,fieldName) {
+        if (this.formCreation.form.option.disableList == undefined) {
+            this.formCreation.form.option.disableList = [];
+        }
+        if (this.formCreation.form.option.disableList[rowIndex] == undefined) {
+            this.formCreation.form.option.disableList[rowIndex] = {}
+        }
         this.formCreation.form.option.disableList[rowIndex][fieldName] = true;
     }
     enableField(rowIndex,fieldName) {
+        if (this.formCreation.form.option.disableList == undefined) {
+            this.formCreation.form.option.disableList = [];
+        }
+        if (this.formCreation.form.option.disableList[rowIndex] == undefined) {
+            this.formCreation.form.option.disableList[rowIndex] = {}
+        }
         this.formCreation.form.option.disableList[rowIndex][fieldName] = false;
     }
     enableDeleteRow(rowIndex) {
