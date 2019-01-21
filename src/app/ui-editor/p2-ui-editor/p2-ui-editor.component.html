@@ -1,11 +1,8 @@
-<div class="uiEditPanel">
-    <div class="uiEditRow">
-        <div class="uiEditControlPanel uiCell componentControl">
-            <div class="p2Panel ">
-                <div class="p2PanelAlign">
-                    <div class="p2Header">
-                        Component
-                    </div>
+<app-p2-panel [header]="'User Interface Editor'">
+    <div class="uiEditPanel">
+        <div class="uiEditRow">
+            <div class="uiEditControlPanel uiCell componentControl">
+                <app-p2-panel [header]="'Component'">
                     <div class="p2ContentPanel p2ContentPanelGray">
                         <div class="containerBox">
                             Container
@@ -33,29 +30,21 @@
                             Check Box
                         </div>
                     </div>
-                </div>
+                </app-p2-panel>
             </div>
-        </div>
-        <div class="uiCell">
-            <div class="p2Panel ">
-                <div class="p2PanelAlign">
-                    <div class="p2Header">
-                        Example Form
-                    </div>
+            <div class="uiCell">
+                <app-p2-panel [header]="'Example Form'">
                     <div class="p2ContentPanel p2ContentPanelGray">
-                        <app-dynamic-form [formCreation]="formCreation" (panelCallBack)="processPanelCallBack($event)"></app-dynamic-form>
+                        <app-dynamic-form [formCreation]="formCreation"
+                                          (panelCallBack)="processPanelCallBack($event)"></app-dynamic-form>
                     </div>
-                </div>
+                </app-p2-panel>
             </div>
-        </div>
-        <div class="uiPropertiesPanel uiCell propertiesControl">
-            <div class="p2Panel ">
-                <div class="p2PanelAlign">
-                    <div class="p2Header">
-                        Properties
-                    </div>
+            <div class="uiPropertiesPanel uiCell propertiesControl">
+                <app-p2-panel [header]="'Properties'">
                     <div class="p2ContentPanel p2ContentPanelGray p2DynamicTabPanel">
-                        <app-dynamic-tab #tabRef [tabCreation]="propertiesTab" (callBack)="precessTabCallBack($event)"></app-dynamic-tab>
+                        <app-dynamic-tab #tabRef [tabCreation]="propertiesTab"
+                                         (callBack)="precessTabCallBack($event)"></app-dynamic-tab>
                         <div class="tabContentPanel {{tabRef.getCssStatus(0)}}">
                             <app-dynamic-form [formCreation]="formPropertiesForm"></app-dynamic-form>
                             <div class="btnPanel">
@@ -69,30 +58,25 @@
                             </div>
                         </div>
                         <div class="tabContentPanel {{tabRef.getCssStatus(2)}}">
-                                <div class="fixMaxHeight" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
-                                    <app-dynamic-form [formCreation]="componentPropertiesForm" ></app-dynamic-form>
-                                </div>
+                            <div class="fixMaxHeight" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
+                                <app-dynamic-form [formCreation]="componentPropertiesForm"></app-dynamic-form>
+                            </div>
                             <div class="btnPanel">
                                 <div class="btn-style-dynamic btn-small">Set</div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </app-p2-panel>
             </div>
         </div>
     </div>
-</div>
-<div class="uiCell">
-    <div class="p2Panel ">
-        <div class="p2PanelAlign">
-            <div class="p2Header">
-                Generate From Data
-            </div>
+    <div class="uiCell">
+        <app-p2-panel [header]="'Generate From Data'">
             <div class="p2ContentPanel">
-                <textarea class="importTextArea" [(ngModel)]="importData.data">
-                </textarea>
+            <textarea class="importTextArea" [(ngModel)]="importData.data">
+            </textarea>
                 <div class="btn-style-dynamic" (click)="processGenerate()">Generate</div>
             </div>
-        </div>
+        </app-p2-panel>
     </div>
-</div>
+</app-p2-panel>
