@@ -1483,4 +1483,11 @@ export class TestDynamicComponent implements OnInit {
 	testDeleteMulti() {
 		this.dynamicFormTable.deleteRow([1,2]);
 	}
+
+	testEnableField() {
+		this.dynamicFormTable.enableField(0,"testCheckBox")
+	}
+	testDisableField() {
+		this.dynamicFormTable.disableField(0,"testCheckBox")
+	}
 }
