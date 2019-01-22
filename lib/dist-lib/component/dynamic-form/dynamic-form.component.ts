@@ -806,9 +806,21 @@ export class DynamicFormComponent implements OnInit {
                 rowIndex.reverse();
                 for (let rowIndexNum of rowIndex) {
                     this.tempDeleteData.splice(rowIndexNum, 1);
+                    if (this.formCreation.form.option.enableRowIndex != undefined) {
+                        this.formCreation.form.option.enableRowIndex.splice(rowIndexNum, 1);
+                    }
+                    if (this.formCreation.form.option.disableList != undefined) {
+                        this.formCreation.form.option.disableList.splice(rowIndexNum, 1);
+                    }
                 }
             } else {
                 this.tempDeleteData.splice(rowIndex, 1);
+                if (this.formCreation.form.option.enableRowIndex != undefined) {
+                    this.formCreation.form.option.enableRowIndex.splice(rowIndex, 1);
+                }
+                if (this.formCreation.form.option.disableList != undefined) {
+                    this.formCreation.form.option.disableList.splice(rowIndex, 1);
+                }
             }
             this.formCreation.data = tempRowList;
             if (this.deleteDataTimer != null) {
