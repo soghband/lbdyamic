@@ -1,9 +1,9 @@
-<app-p2-panel [header]="'User Interface Editor'">
+<app-panel-main [header]="'User Interface Editor'" [margin]="true">
     <div class="uiEditPanel">
         <div class="uiEditRow">
             <div class="uiEditControlPanel uiCell componentControl">
-                <app-p2-panel [header]="'Component'">
-                    <div class="p2ContentPanel p2ContentPanelGray">
+                <app-panel-child [header]="'Component'">
+                    <div class="contentPanel contentPanelGray">
                         <div class="containerBox">
                             Container
                         </div>
@@ -30,23 +30,25 @@
                             Check Box
                         </div>
                     </div>
-                </app-p2-panel>
+                </app-panel-child>
             </div>
             <div class="uiCell">
-                <app-p2-panel [header]="'Example Form'">
-                    <div class="p2ContentPanel p2ContentPanelGray">
+                <app-panel-child [header]="'Example Form'">
+                    <div class="contentPanel contentPanelGray">
                         <app-dynamic-form [formCreation]="formCreation"
                                           (panelCallBack)="processPanelCallBack($event)"></app-dynamic-form>
                     </div>
-                </app-p2-panel>
+                </app-panel-child>
             </div>
             <div class="uiPropertiesPanel uiCell propertiesControl">
-                <app-p2-panel [header]="'Properties'">
-                    <div class="p2ContentPanel p2ContentPanelGray p2DynamicTabPanel">
+                <app-panel-child [header]="'Properties'">
+                    <div class="contentPanel contentPanelGray p2DynamicTabPanel">
                         <app-dynamic-tab #tabRef [tabCreation]="propertiesTab"
                                          (callBack)="precessTabCallBack($event)"></app-dynamic-tab>
                         <div class="tabContentPanel {{tabRef.getCssStatus(0)}}">
-                            <app-dynamic-form [formCreation]="formPropertiesForm"></app-dynamic-form>
+                            <div class="fixMaxHeight" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
+                                <app-dynamic-form [formCreation]="formPropertiesForm"></app-dynamic-form>
+                            </div>
                             <div class="btnPanel">
                                 <div class="btn-style-dynamic btn-small">Set</div>
                             </div>
@@ -66,17 +68,17 @@
                             </div>
                         </div>
                     </div>
-                </app-p2-panel>
+                </app-panel-child>
             </div>
         </div>
     </div>
     <div class="uiCell">
-        <app-p2-panel [header]="'Generate From Data'">
-            <div class="p2ContentPanel">
+        <app-panel-child [header]="'Generate From Data'">
+            <div class="contentPanel">
             <textarea class="importTextArea" [(ngModel)]="importData.data">
             </textarea>
                 <div class="btn-style-dynamic" (click)="processGenerate()">Generate</div>
             </div>
-        </app-p2-panel>
+        </app-panel-child>
     </div>
-</app-p2-panel>
+</app-panel-main>

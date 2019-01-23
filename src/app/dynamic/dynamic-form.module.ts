@@ -42,6 +42,8 @@ import {DynamicContainerTableComponent} from './component/dynamic-container-tabl
 import {DynamicFormLabelPanelComponent} from './component/dynamic-form-label-panel/dynamic-form-label-panel.component';
 import {DynamicFormRowComponent} from './component/dynamic-form-row/dynamic-form-row.component';
 import {LockScreenServiceP2} from './service/lock-screen.service';
+import {PanelMainComponent} from './component/panel/panel-main/panel-main.component';
+import { PanelChildComponent } from './component/panel/panel-child/panel-child.component';
 @NgModule({
 imports: [
 	CommonModule,
@@ -87,6 +89,8 @@ declarations: [
 	DynamicContainerTableComponent,
 	DynamicFormLabelPanelComponent,
 	DynamicFormRowComponent,
+	PanelMainComponent,
+	PanelChildComponent,
 ],
 exports: [
 	DynamicInputComponent,
@@ -121,7 +125,9 @@ exports: [
 	NgxDateComponent,
 	DynamicContainerTableComponent,
 	DynamicFormLabelPanelComponent,
-	DynamicFormRowComponent
+	DynamicFormRowComponent,
+	PanelMainComponent,
+	PanelChildComponent,
 ],
 schemas: [
 	CUSTOM_ELEMENTS_SCHEMA,

@@ -61,7 +61,7 @@ export class P2UiEditorComponent implements OnInit {
 						{
 							fieldName: "className",
 							type: "textBox",
-							label: "Container Name",
+							label: "Form ID",
 							inputPattern: /.*/,
 							valuePattern: /.*/,
 							columnPerLine: 1,
@@ -83,7 +83,115 @@ export class P2UiEditorComponent implements OnInit {
 									value: "left"
 								}
 							],
-							default: ["view"]
+							default: ["top"]
+						},{
+							fieldName: "frame",
+							type: "selectBox",
+							label: "Frame",
+							columnPerLine: 1,
+							multiValue: false,
+							valueList: [
+								{
+									display: "Yes",
+									value: "yes"
+								},
+								{
+									display: "No",
+									value: "no"
+								}
+							],
+							default: ["No"]
+						},{
+							fieldName: "frameName",
+							type: "textBox",
+							label: "Frame Name",
+							columnPerLine: 1,
+							multiValue: true,
+							default: ["No"]
+						},{
+							fieldName: "addRow",
+							type: "selectBox",
+							label: "Add Row",
+							columnPerLine: 1,
+							multiValue: false,
+							valueList: [
+								{
+									display: "Yes",
+									value: "yes"
+								},
+								{
+									display: "No",
+									value: "no"
+								}
+							],
+							default: ["No"]
+						},{
+							fieldName: "addRowText",
+							type: "textBox",
+							label: "Add Row Text",
+							columnPerLine: 1,
+							multiValue: false,
+							default: ["Add New"]
+						},{
+							fieldName: "deleteRow",
+							type: "selectBox",
+							label: "Delete Row",
+							columnPerLine: 1,
+							multiValue: false,
+							valueList: [
+								{
+									display: "Yes",
+									value: "yes"
+								},
+								{
+									display: "No",
+									value: "no"
+								}
+							],
+							default: ["No"]
+						},{
+							fieldName: "disableDelete",
+							type: "selectBox",
+							label: "Disable Delete Row",
+							columnPerLine: 1,
+							multiValue: true,
+							valueList: [
+								{
+									display: "Yes",
+									value: "yes"
+								},
+								{
+									display: "No",
+									value: "no"
+								}
+							],
+							default: ["No"]
+						},{
+							fieldName: "enableRowIndex",
+							type: "selectBox",
+							label: "Enable All Field in Row",
+							note: "Array Index",
+							columnPerLine: 1,
+							multiValue: true,
+							valueList: [
+								{
+									display: "Yes",
+									value: "yes"
+								},
+								{
+									display: "No",
+									value: "no"
+								}
+							],
+							default: ["No"]
+						},{
+							fieldName: "disableList",
+							type: "textBox",
+							label: "Disable Field List",
+							note: "Array Index",
+							columnPerLine: 1,
+							multiValue: true,
+							default: ["No"]
 						}
 					]
 				}
@@ -92,7 +200,15 @@ export class P2UiEditorComponent implements OnInit {
 		data:[{
 			mode: ["edit"],
 			className: ["defaultDynamicForm"],
-			labelAlign: ["top"]
+			labelAlign: ["top"],
+			frame: ["no"],
+			frameName: [""],
+			addRow: ["no"],
+			addRowText: ["Add New"],
+			deleteRow: ["no"],
+			disableDelete: ["no"],
+			enableRowIndex: ["no"],
+			disableList: [""],
 		}]
 	};
 	containerPropertiesForm = {
@@ -128,38 +244,24 @@ export class P2UiEditorComponent implements OnInit {
 							default: [""],
 						},
 						{
-							fieldName: "columnSpan",
-							type: "selectBox",
+							fieldName: "columnSize",
+							type: "textBox",
 							label: "Column Size",
-							columnPerLine: 1,
+							inputPattern: /[0-9]/,
+							valuePattern: /.*/,
+							columnPerLine: 2,
 							multiValue: false,
-							valueList: [
-								{
-									display: "1/1",
-									value: "1/1"
-								},
-								{
-									display: "1/2",
-									value: "1/2"
-								},
-								{
-									display: "1/3",
-									value: "1/3"
-								},
-								{
-									display: "1/4",
-									value: "1/4"
-								},
-								{
-									display: "1/5",
-									value: "1/5"
-								},
-								{
-									display: "1/6",
-									value: "1/6"
-								},
-							],
-							default: ["1/1"]
+							default: ["1"],
+						},
+						{
+							fieldName: "columnSizeOf",
+							type: "textBox",
+							label: "Of",
+							inputPattern: /[0-9]/,
+							valuePattern: /.*/,
+							columnPerLine: 2,
+							multiValue: false,
+							default: ["1"],
 						}
 					]
 				}
@@ -168,7 +270,9 @@ export class P2UiEditorComponent implements OnInit {
 		data:[{
 			containerName:[""],
 			customClass:[""],
-			columnSpan:["1/1"]
+			columnSpan:["1/1"],
+			columnSize:["1"],
+			columnSizeOf:["1"],
 		}]
 	};
 	componentPropertiesForm = {

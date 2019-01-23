@@ -91,7 +91,7 @@ export class DynamicFormComponent implements OnInit {
             for (let dataIndex in this.formCreation.data) {
                 if (this.formCreation.data[dataIndex][fieldName] == undefined) {
                     check = false;
-                    console.error("Dynamic form error field data not exists: "+fieldName + " data row: "+dataIndex);
+                    console.error("Dynamic form error field data not exists: '"+fieldName + "' data row: "+dataIndex);
                 }
             }
         }

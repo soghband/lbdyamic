@@ -1,6 +1,4 @@
 .mainPanel {
-  width: calc(100% - 30px);
-  margin: 15px 15px;
   position: relative; }
   .mainPanel .panelAlign960 {
     max-width: 960px;
@@ -27,10 +25,14 @@
     .mainPanel .panelAlign .contentPanel {
       border: solid 1px #DDD;
       border-top: 0px;
-      padding: 15px;
+      padding: 5px;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px; }
     .mainPanel .panelAlign .contentPanelGray {
       background: linear-gradient(#FFF, #EEE); }
 
-/*# sourceMappingURL=p2-panel.component.css.map */
+.panelMargin {
+  margin: 15px 15px;
+  width: calc(100% - 30px); }
+
+/*# sourceMappingURL=panel-main.component.css.map */

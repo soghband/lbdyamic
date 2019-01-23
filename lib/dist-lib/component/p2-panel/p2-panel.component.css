@@ -1,16 +1,16 @@
-.p2Panel {
+.mainPanel {
   width: calc(100% - 10px);
   margin: 0px 5px 15px 5px;
   position: relative; }
-  .p2Panel .p2PanelAlign960 {
+  .mainPanel .panelAlign960 {
     max-width: 960px;
     margin: 0 auto; }
-  .p2Panel .p2PanelAlign {
+  .mainPanel .panelAlign {
     margin: 0 auto;
     position: relative;
     border-radius: 5px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1); }
-    .p2Panel .p2PanelAlign .p2Header {
+    .mainPanel .panelAlign .header {
       color: #ffffff;
       font-size: 22px;
       padding: 0px 10px;
@@ -18,19 +18,19 @@
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       position: relative; }
-      .p2Panel .p2PanelAlign .p2Header .closeBtn {
+      .mainPanel .panelAlign .header .closeBtn {
         position: absolute;
         top: 4px;
         right: 4px;
         cursor: hand;
         cursor: pointer; }
-    .p2Panel .p2PanelAlign .p2ContentPanel {
+    .mainPanel .panelAlign .contentPanel {
       border: solid 1px #DDD;
       border-top: 0px;
       padding: 15px;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px; }
-    .p2Panel .p2PanelAlign .p2ContentPanelGray {
+    .mainPanel .panelAlign .contentPanelGray {
       background: linear-gradient(#FFF, #EEE); }
 
 /*# sourceMappingURL=p2-panel.component.css.map */
