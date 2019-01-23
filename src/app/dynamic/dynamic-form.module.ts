@@ -44,6 +44,7 @@ import {DynamicFormRowComponent} from './component/dynamic-form-row/dynamic-form
 import {LockScreenServiceP2} from './service/lock-screen.service';
 import {PanelMainComponent} from './component/panel/panel-main/panel-main.component';
 import { PanelChildComponent } from './component/panel/panel-child/panel-child.component';
+import { ButtonIconComponent } from './component/dynamic-input/button-icon/button-icon.component';
 @NgModule({
 imports: [
 	CommonModule,
@@ -75,6 +76,7 @@ declarations: [
 	DynamicBehaviorComponent,
 	ErrorMsgBubbleComponent,
 	ButtonComponent,
+	ButtonIconComponent,
 	DynamicTabComponent,
 	DynamicPopupComponent,
 	SwappingBoxComponent,
@@ -91,6 +93,7 @@ declarations: [
 	DynamicFormRowComponent,
 	PanelMainComponent,
 	PanelChildComponent,
+	ButtonIconComponent,
 ],
 exports: [
 	DynamicInputComponent,
@@ -112,6 +115,7 @@ exports: [
 	DynamicBehaviorComponent,
 	ErrorMsgBubbleComponent,
 	ButtonComponent,
+	ButtonIconComponent,
 	DynamicTabComponent,
 	DynamicPopupComponent,
 	SwappingBoxComponent,

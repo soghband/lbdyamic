@@ -114,6 +114,15 @@
         width: 39px;
         text-align: center;
         color: #a9a9a9a9; }
+      .defaultDynamicForm .dp2FieldPanel .dp2InputBox .icon {
+        color: #000;
+        display: inline-block;
+        cursor: hand;
+        cursor: pointer;
+        margin: 1px;
+        line-height: 40px; }
+      .defaultDynamicForm .dp2FieldPanel .dp2InputBox .icon-disable {
+        color: #7e836f; }
       .defaultDynamicForm .dp2FieldPanel .dp2InputBox .posRelative {
         position: relative;
         margin-top: 5px; }

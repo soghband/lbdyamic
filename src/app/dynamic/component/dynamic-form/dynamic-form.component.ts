@@ -19,6 +19,7 @@ import {NgxDateComponent} from '../dynamic-input/ngx-date/ngx-date.component';
 import {DynamicFormRowComponent} from '../dynamic-form-row/dynamic-form-row.component';
 import {DynamicContainerTableComponent} from '../dynamic-container-table/dynamic-container-table.component';
 import {Observable} from 'rxjs/Rx';
+import {ButtonIconComponent} from '../dynamic-input/button-icon/button-icon.component';
 
 @Component({
     selector: 'app-dynamic-form',
@@ -34,6 +35,7 @@ import {Observable} from 'rxjs/Rx';
         ImageComponent,
         AutoCompleteComponent,
         ButtonComponent,
+        ButtonIconComponent,
         SwappingBoxComponent,
         MapValueComponent,
         QrCodeComponent,

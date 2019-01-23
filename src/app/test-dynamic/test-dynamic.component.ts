@@ -401,6 +401,23 @@ export class TestDynamicComponent implements OnInit {
                     customClass: "testCustomContainer",
                     columnSpan: "1/1",
                     fieldList: [
+						{
+							fieldName: 'operatorFlag',
+							label: 'Action',
+							type: 'buttonIcon',
+							width:"150px",
+							columnPerLine: '1',
+							valueList: [{
+								display: "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>",
+								value: "MOD"
+							},{
+								display: "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>",
+								value: "RMV"
+							},{
+								display: "<span class='glyphicon glyphicon-ban-circle' aria-hidden='true'></span>",
+								value: ""
+							}],
+						},
                         {
                             fieldName: "testTextBox",
                             type: "textBox",
@@ -445,86 +462,6 @@ export class TestDynamicComponent implements OnInit {
                                 ,{
                                     display:"e",
                                     value:"e"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
-                                }
-                                ,{
-                                    display:"f",
-                                    value:"f"
                                 }
                                 ,{
                                     display:"f",
@@ -625,6 +562,7 @@ export class TestDynamicComponent implements OnInit {
         },
         data:[
             {
+				operatorFlag: [""],
                 testTextBox: [""],
                 testAutoComplete: [
                     {
@@ -669,6 +607,7 @@ export class TestDynamicComponent implements OnInit {
                 testQrCode: [],
                 testDate: [""]
             },{
+				operatorFlag: [""],
                 testTextBox: [""],
                 testAutoComplete: [
                     {
@@ -713,6 +652,7 @@ export class TestDynamicComponent implements OnInit {
                 testQrCode: [],
                 testDate: [""]
             },{
+				operatorFlag: [""],
                 testTextBox: [""],
                 testAutoComplete: [
                     {
@@ -757,6 +697,7 @@ export class TestDynamicComponent implements OnInit {
                 testQrCode: [],
                 testDate: [""]
             },{
+				operatorFlag: [""],
                 testTextBox: [""],
                 testAutoComplete: [
                     {

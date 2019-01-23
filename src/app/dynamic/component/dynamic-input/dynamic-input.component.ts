@@ -16,6 +16,7 @@ import {QrCodeComponent} from './qrcode/qrcode.component';
 import {RadioComponent} from "./radio/radio.component";
 import {DateComponent} from './date/date.component';
 import {NgxDateComponent} from './ngx-date/ngx-date.component';
+import {ButtonIconComponent} from './button-icon/button-icon.component';
 
 @Component({
 	selector: 'app-dynamic-input',
@@ -43,6 +44,7 @@ export class DynamicInputComponent implements OnInit {
 		"image": ImageComponent,
 		"autoComplete": AutoCompleteComponent,
 		"button": ButtonComponent,
+		"buttonIcon": ButtonIconComponent,
 		"swappingBox": SwappingBoxComponent,
 		"mapValue": MapValueComponent,
 		"qrCode": QrCodeComponent,
