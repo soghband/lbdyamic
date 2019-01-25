@@ -21,6 +21,8 @@
         <div class="btn-style-dynamic" (click)="testMapGetValue()">test map get value</div>
         <div class="btn-style-dynamic" (click)="testGetRequire()">test get require</div>
         <div class="btn-style-dynamic" (click)="testGetValidate()">test get validate</div>
+        <div class="btn-style-dynamic" (click)="testViewMode()">test view mode</div>
+        <div class="btn-style-dynamic" (click)="testEditMode()">test edit mode</div>
     </div>
     <div class="tabContentPanel {{tabListRef.getCssStatus('Form Table')}}">
         <app-dynamic-form #dynamicFormTable [formCreation]="formCreationTable" (callBack)="processCallBack($event)"></app-dynamic-form>

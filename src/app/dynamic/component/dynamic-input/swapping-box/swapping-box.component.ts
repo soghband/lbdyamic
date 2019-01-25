@@ -68,7 +68,7 @@ export class SwappingBoxComponent extends DynamicBehaviorComponent implements On
     }
 
     transferData(valueIndex) {
-        if (this.fieldCreation.readonly != true) {
+        if (!this.getDisable()) {
             let value = this.fieldCreation.valueList[valueIndex].value;
             let foundFlag = false;
             for (let dataRow of this.data[this.fieldCreation.fieldName]) {
@@ -92,7 +92,7 @@ export class SwappingBoxComponent extends DynamicBehaviorComponent implements On
         }
     }
     removeData(dataIndex) {
-		if (this.fieldCreation.readonly != true) {
+		if (!this.getDisable()) {
 			this.data[this.fieldCreation.fieldName].splice(dataIndex,1);
 			let valueObj = Object.assign([],this.data[this.fieldCreation.fieldName]);
 			this.callBack.emit({

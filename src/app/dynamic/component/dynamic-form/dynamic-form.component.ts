@@ -20,6 +20,7 @@ import {DynamicFormRowComponent} from '../dynamic-form-row/dynamic-form-row.comp
 import {DynamicContainerTableComponent} from '../dynamic-container-table/dynamic-container-table.component';
 import {Observable} from 'rxjs/Rx';
 import {ButtonIconComponent} from '../dynamic-input/button-icon/button-icon.component';
+import {DynamicFormMode} from '../dynamic-form-mode';
 
 @Component({
     selector: 'app-dynamic-form',
@@ -135,7 +136,9 @@ export class DynamicFormComponent implements OnInit {
         if (event.action == "deleteRow") {
             this.deleteRow(event.rowIndex);
         } else {
-            this.callBack.emit(event);
+            Observable.timer(100).subscribe(()=>{
+                this.callBack.emit(event);
+            });
         }
     }
 
@@ -1065,5 +1068,8 @@ export class DynamicFormComponent implements OnInit {
             }
         }
         return check;
+    }
+    setMode(mode:DynamicFormMode) {
+        this.formCreation.form.option.mode = mode;
     }
 }

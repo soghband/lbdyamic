@@ -7,6 +7,7 @@ import {DynamicTabComponent} from "../dynamic/component/dynamic-tab/dynamic-tab.
 import {DynamicPopupComponent} from "../dynamic/component/dynamic-popup/dynamic-popup.component";
 import {DynamicTableComponent} from '../dynamic/component/dynamic-table/dynamic-table.component';
 import {LockScreenServiceP2} from '../dynamic';
+import {DynamicFormMode} from '../dynamic/component/dynamic-form-mode';
 
 @Component({
 	selector: 'app-test-dynamic',
@@ -1431,5 +1432,13 @@ export class TestDynamicComponent implements OnInit {
 	}
 	testDisableField() {
 		this.dynamicFormTable.disableField(0,"testCheckBox")
+	}
+
+	testEditMode() {
+		this.dynamicForm.setMode(DynamicFormMode.edit);
+	}
+
+	testViewMode() {
+		this.dynamicForm.setMode(DynamicFormMode.view);
 	}
 }

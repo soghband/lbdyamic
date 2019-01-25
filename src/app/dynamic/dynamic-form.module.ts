@@ -54,7 +54,7 @@ imports: [
 	MalihuScrollbarModule,
 	ZXingScannerModule,
 	MatDatepickerModule,
-	NgxMyDatePickerModule.forRoot()
+	NgxMyDatePickerModule.forRoot(),
 ],
 declarations: [
 	DynamicInputComponent,
@@ -131,7 +131,7 @@ exports: [
 	DynamicFormLabelPanelComponent,
 	DynamicFormRowComponent,
 	PanelMainComponent,
-	PanelChildComponent,
+	PanelChildComponent
 ],
 schemas: [
 	CUSTOM_ELEMENTS_SCHEMA,
