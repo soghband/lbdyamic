@@ -19,22 +19,23 @@ export class DynamicTabComponent implements OnInit {
 	}
 
 	processCallBack(data) {
-		this.currentTab = data.tabNum;
-		this.callBack.emit(data);
+		if (!this.lockTab) {
+			this.currentTab = data.tabNum;
+			this.callBack.emit(data);
+		}
 	}
 	getCssStatus(tabNumber) {
-		if (!this.lockTab) {
-			if (!isNaN(parseFloat(tabNumber)) && isFinite(tabNumber)) {
-				if (tabNumber == this.currentTab) {
-					return "p2DShowTab"
-				}
-				return "p2DHideTab"
-			} else {
-				if (this.tabCreation.tabList.indexOf(tabNumber) == this.currentTab) {
-					return "p2DShowTab"
-				}
-				return "p2DHideTab";
+		if (!isNaN(parseFloat(tabNumber)) && isFinite(tabNumber)) {
+			if (tabNumber == this.currentTab) {
+				return "p2DShowTab"
 			}
+			return "p2DHideTab"
+		} else {
+			if (this.tabCreation.tabList.indexOf(tabNumber) == this.currentTab) {
+				return "p2DShowTab"
+			}
+			return "p2DHideTab";
 		}
+
 	}
 }

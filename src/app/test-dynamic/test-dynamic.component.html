@@ -1,5 +1,5 @@
 <div class="p2DynamicTabPanel">
-    <app-dynamic-tab #tabListRefId [tabCreation]="tabCreation"></app-dynamic-tab>
+    <app-dynamic-tab #tabListRefId [tabCreation]="tabCreation" [lockTab]="true"></app-dynamic-tab>
     <div class="tabContentPanel {{tabListRef.getCssStatus('Popup')}}">
         <div class="btn-style-dynamic" (click)="popupError()">test popup error</div>
         <div class="btn-style-dynamic" (click)="popupInfo()">test popup info</div>
