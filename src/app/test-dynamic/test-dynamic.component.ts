@@ -1441,4 +1441,12 @@ export class TestDynamicComponent implements OnInit {
 	testViewMode() {
 		this.dynamicForm.setMode(DynamicFormMode.view);
 	}
+
+	toggleLockTab() {
+		this.tabListRef.toogleLockTab();
+	}
+
+	testNextTab() {
+		this.tabListRef.nextTab();
+	}
 }

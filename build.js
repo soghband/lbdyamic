@@ -17,7 +17,7 @@ function createDeclarations() {
 function createPackageJson() {
   const packageJSON =  {
     "name": "lbdynamic",
-    "version": "1.1.3",
+    "version": "1.1.4",
     "description": "Dynamic From For Angular 4",
     "main": "index.js",
     "scripts": {

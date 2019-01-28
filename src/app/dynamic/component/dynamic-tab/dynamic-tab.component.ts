@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {current} from 'codelyzer/util/syntaxKind';
 
 @Component({
 	selector: 'app-dynamic-tab',
@@ -20,8 +21,27 @@ export class DynamicTabComponent implements OnInit {
 
 	processCallBack(data) {
 		if (!this.lockTab) {
-			this.currentTab = data.tabNum;
+			this.currentTab = parseInt(data.tabNum);
 			this.callBack.emit(data);
+		}
+	}
+	nextTab() {
+		if (this.currentTab < this.tabCreation.tabList.length-1){
+			console.log(this.currentTab);
+			this.currentTab = this.currentTab+1;
+			console.log(this.currentTab);
+			this.callBack.emit({
+				action: "nextTab",
+				fromTab: this.currentTab - 1,
+				toTab: this.currentTab
+			});
+		}
+	}
+	toogleLockTab() {
+		if (this.lockTab) {
+			this.lockTab = false;
+		} else {
+			this.lockTab = true;
 		}
 	}
 	getCssStatus(tabNumber) {

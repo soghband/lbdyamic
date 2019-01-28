@@ -1,5 +1,5 @@
 <div class="p2DynamicTabPanel">
-    <app-dynamic-tab #tabListRefId [tabCreation]="tabCreation" [lockTab]="true"></app-dynamic-tab>
+    <app-dynamic-tab #tabListRefId [tabCreation]="tabCreation"></app-dynamic-tab>
     <div class="tabContentPanel {{tabListRef.getCssStatus('Popup')}}">
         <div class="btn-style-dynamic" (click)="popupError()">test popup error</div>
         <div class="btn-style-dynamic" (click)="popupInfo()">test popup info</div>
@@ -35,6 +35,8 @@
         <div class="btn-style-dynamic" (click)="testFormTableGetInput()">test Get Input</div>
         <div class="btn-style-dynamic" (click)="testDeleteMulti()">test Delete Multi Row</div>
         <div class="btn-style-dynamic" (click)="testAddRow()">test Add Row</div>
+        <div class="btn-style-dynamic" (click)="toggleLockTab()">Toggle Lock Tab</div>
+        <div class="btn-style-dynamic" (click)="testNextTab()">next Tab</div>
     </div>
     <div class="tabContentPanel {{tabListRef.getCssStatus('Table')}}">
         <app-dynamic-table [tableCreation]="tableCreation" #tableId (callBack)="processCallBack($event)"></app-dynamic-table>
