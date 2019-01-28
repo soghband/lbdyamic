@@ -39,7 +39,7 @@ export class ButtonIconComponent extends DynamicBehaviorComponent implements OnI
     }
 
     processClick(event, action, dataIndex, valueList) {
-        if (!this.fieldCreation.readonly) {
+        if (!this.getDisable()) {
             if (typeof (this.data[this.fieldCreation.fieldName]) != 'undefined' && typeof (this.data[this.fieldCreation.fieldName][dataIndex]) != 'undefined') {
                 this.data[this.fieldCreation.fieldName][dataIndex] = valueList.value;
             }

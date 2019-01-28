@@ -806,6 +806,8 @@
       margin-right: 10px; }
     .table-form-default-dynamic .btn-action span {
       cursor: pointer; }
+  .table-form-default-dynamic .delete abbr {
+    border-bottom: 0px; }
   .table-form-default-dynamic .link-action {
     cursor: pointer;
     color: #ff5451;

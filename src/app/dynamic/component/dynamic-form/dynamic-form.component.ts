@@ -800,39 +800,77 @@ export class DynamicFormComponent implements OnInit {
         if (check) {
             let rowCount = this.getFormRow();
             let tempRowList = [];
+            let tempEnableRow = [];
+            let tempDisableDelete = [];
+            let tempDisableList = [];
+            let tempDeleteData;
+            let tempEnableRowData;
+            let tempDisableDeleteData;
+            let tempDisableListData;
             for (let dataRowIndex in this.formCreation.data) {
                 tempRowList[parseInt(dataRowIndex)+parseInt(rowCount)] = this.formCreation.data[dataRowIndex];
+                if (this.formCreation.form.option.enableRowIndex != undefined) {
+                    tempEnableRow[parseInt(dataRowIndex)+parseInt(rowCount)] = this.formCreation.form.option.enableRowIndex[dataRowIndex]
+                }
+                if (this.formCreation.form.option.disableDelete != undefined) {
+                    tempDisableDelete[parseInt(dataRowIndex)+parseInt(rowCount)] = this.formCreation.form.option.disableDelete[dataRowIndex]
+                }
+                if (this.formCreation.form.option.disableList != undefined) {
+                    tempDisableList[parseInt(dataRowIndex)+parseInt(rowCount)] = this.formCreation.form.option.disableList[dataRowIndex]
+                }
             }
             if (!this.onDeleteProcess) {
-                this.tempDeleteData = Object.assign([], this.formCreation.data);
+                tempDeleteData = Object.assign([], this.formCreation.data);
+                if (this.formCreation.form.option.enableRowIndex != undefined) {
+                    tempEnableRowData = Object.assign([], this.formCreation.form.option.enableRowIndex);
+                }
+                if (this.formCreation.form.option.disableDelete != undefined) {
+                    tempDisableDeleteData = Object.assign([], this.formCreation.form.option.disableDelete);
+                }
+                if (this.formCreation.form.option.disableList != undefined) {
+                    tempDisableListData = Object.assign([], this.formCreation.form.option.disableList);
+                }
             }
             if (isArray(rowIndex)) {
                 rowIndex.sort();
                 rowIndex.reverse();
                 for (let rowIndexNum of rowIndex) {
-                    this.tempDeleteData.splice(rowIndexNum, 1);
+                    tempDeleteData.splice(rowIndexNum, 1);
                     if (this.formCreation.form.option.enableRowIndex != undefined) {
-                        this.formCreation.form.option.enableRowIndex.splice(rowIndexNum, 1);
+                        tempEnableRowData.splice(rowIndexNum, 1);
+                    }
+                    if (this.formCreation.form.option.disableDelete != undefined) {
+                        tempDisableDeleteData.splice(rowIndexNum, 1);
                     }
                     if (this.formCreation.form.option.disableList != undefined) {
-                        this.formCreation.form.option.disableList.splice(rowIndexNum, 1);
+                        tempDisableListData.splice(rowIndexNum, 1);
                     }
                 }
             } else {
-                this.tempDeleteData.splice(rowIndex, 1);
+                tempDeleteData.splice(rowIndex, 1);
                 if (this.formCreation.form.option.enableRowIndex != undefined) {
-                    this.formCreation.form.option.enableRowIndex.splice(rowIndex, 1);
+                    tempEnableRowData.splice(rowIndex, 1);
+                }
+                if (this.formCreation.form.option.disableDelete != undefined) {
+                    tempDisableDeleteData.splice(rowIndex, 1);
                 }
                 if (this.formCreation.form.option.disableList != undefined) {
-                    this.formCreation.form.option.disableList.splice(rowIndex, 1);
+                    tempDisableListData.splice(rowIndex, 1);
                 }
             }
             this.formCreation.data = tempRowList;
+            this.formCreation.form.option.enableRowIndex = tempEnableRow;
+            this.formCreation.form.option.disableDelete = tempDisableDelete;
+            this.formCreation.form.option.disableList = tempDisableList;
+
             if (this.deleteDataTimer != null) {
                 this.deleteDataTimer = null
             }
             this.deleteDataTimer = Observable.timer(200).subscribe(()=>{
-                this.formCreation.data = Object.assign([],this.tempDeleteData);
+                this.formCreation.data = Object.assign([],tempDeleteData);
+                this.formCreation.form.option.enableRowIndex = Object.assign([],tempEnableRowData);
+                this.formCreation.form.option.disableDelete = Object.assign([],tempDisableDeleteData);
+                this.formCreation.form.option.disableList = Object.assign([],tempDisableListData);
                 this.onDeleteProcess = false;
             });
         }
@@ -1071,5 +1109,29 @@ export class DynamicFormComponent implements OnInit {
     }
     setMode(mode:DynamicFormMode) {
         this.formCreation.form.option.mode = mode;
+    }
+    enableAdd() {
+        if (this.formCreation.form.option.addRow == undefined) {
+            this.formCreation.form.option.addRow = true;
+        }
+        this.formCreation.form.option.addRow = true;
+    }
+    disableAdd() {
+        if (this.formCreation.form.option.addRow == undefined) {
+            this.formCreation.form.option.addRow = false;
+        }
+        this.formCreation.form.option.addRow = false;
+    }
+    enableDelete() {
+        if (this.formCreation.form.option.deleteRow == undefined) {
+            this.formCreation.form.option.deleteRow = true;
+        }
+        this.formCreation.form.option.deleteRow = true;
+    }
+    disableDelete() {
+        if (this.formCreation.form.option.deleteRow == undefined) {
+            this.formCreation.form.option.deleteRow = true;
+        }
+        this.formCreation.form.option.deleteRow = true;
     }
 }

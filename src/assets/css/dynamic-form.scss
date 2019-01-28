@@ -1226,7 +1226,6 @@
         color: #ff5451;
         font-size: 16px;
         margin-top: 6px;
-
         &.edit {
             color: #ffbf21;
             margin-right: 10px;
@@ -1237,6 +1236,11 @@
         }
     }
 
+    .delete {
+        abbr {
+            border-bottom: 0px;
+        }
+    }
     .link-action {
         cursor: pointer;
         color: #ff5451;

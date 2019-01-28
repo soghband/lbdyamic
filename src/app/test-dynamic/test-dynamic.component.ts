@@ -380,6 +380,8 @@ export class TestDynamicComponent implements OnInit {
                 className: "defaultDynamicForm",
                 labelAlign: "left",
 				deleteRow: true,
+				deleteRowText: "Delete Row",
+				disableDelete: [true],
 				enableRowIndex: [true],
 				disableList: [
                     {
@@ -1443,10 +1445,18 @@ export class TestDynamicComponent implements OnInit {
 	}
 
 	toggleLockTab() {
-		this.tabListRef.toogleLockTab();
+		this.tabListRef.toggleLockTab();
 	}
 
 	testNextTab() {
 		this.tabListRef.nextTab();
+	}
+
+	testDisableTab() {
+		this.tabListRef.disableTab(5);
+	}
+
+	testEnableTab() {
+		this.tabListRef.enableTab(5);
 	}
 }

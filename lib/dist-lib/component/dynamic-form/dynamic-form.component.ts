@@ -1072,4 +1072,28 @@ export class DynamicFormComponent implements OnInit {
     setMode(mode:DynamicFormMode) {
         this.formCreation.form.option.mode = mode;
     }
+    enableAdd() {
+        if (this.formCreation.form.option.addRow == undefined) {
+            this.formCreation.form.option.addRow = true;
+        }
+        this.formCreation.form.option.addRow = true;
+    }
+    disableAdd() {
+        if (this.formCreation.form.option.addRow == undefined) {
+            this.formCreation.form.option.addRow = false;
+        }
+        this.formCreation.form.option.addRow = false;
+    }
+    enableDelete() {
+        if (this.formCreation.form.option.deleteRow == undefined) {
+            this.formCreation.form.option.deleteRow = true;
+        }
+        this.formCreation.form.option.deleteRow = true;
+    }
+    disableDelete() {
+        if (this.formCreation.form.option.deleteRow == undefined) {
+            this.formCreation.form.option.deleteRow = true;
+        }
+        this.formCreation.form.option.deleteRow = true;
+    }
 }

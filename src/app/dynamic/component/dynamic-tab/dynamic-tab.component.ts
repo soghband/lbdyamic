@@ -20,24 +20,52 @@ export class DynamicTabComponent implements OnInit {
 	}
 
 	processCallBack(data) {
-		if (!this.lockTab) {
+		if (this.getDisableTab(parseInt(data.tabNum))) {
 			this.currentTab = parseInt(data.tabNum);
 			this.callBack.emit(data);
 		}
 	}
+	getDisableTab(tabIndex) {
+		if (this.lockTab) {
+			return false;
+		}
+		if (this.tabCreation.option.lockByIndex != undefined) {
+			if (this.tabCreation.option.lockByIndex[parseInt(tabIndex)] != undefined) {
+				return !this.tabCreation.option.lockByIndex[parseInt(tabIndex)];
+			}
+			return true;
+		}
+		return true;
+	}
+	disableTab(tabIndex) {
+		if (this.tabCreation.option.lockByIndex == undefined) {
+			this.tabCreation.option.lockByIndex = [];
+		}
+		this.tabCreation.option.lockByIndex[tabIndex] = true;
+	}
+	enableTab(tabIndex) {
+		if (this.tabCreation.option.lockByIndex == undefined) {
+			this.tabCreation.option.lockByIndex = [];
+		}
+		this.tabCreation.option.lockByIndex[tabIndex] = false;
+	}
 	nextTab() {
 		if (this.currentTab < this.tabCreation.tabList.length-1){
-			console.log(this.currentTab);
 			this.currentTab = this.currentTab+1;
-			console.log(this.currentTab);
 			this.callBack.emit({
 				action: "nextTab",
-				fromTab: this.currentTab - 1,
-				toTab: this.currentTab
+				fromTab: {
+					name: this.tabCreation.tabList[this.currentTab - 1],
+					index: this.currentTab - 1
+				},
+				toTab: {
+					name: this.tabCreation.tabList[this.currentTab],
+					index: this.currentTab
+				}
 			});
 		}
 	}
-	toogleLockTab() {
+	toggleLockTab() {
 		if (this.lockTab) {
 			this.lockTab = false;
 		} else {
