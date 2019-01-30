@@ -50,6 +50,10 @@ export class DynamicTabComponent implements OnInit {
 		this.tabCreation.option.lockByIndex[tabIndex] = false;
 	}
 	nextTab() {
+		let lastTab = false;
+		if (this.currentTab == this.tabCreation.tabList.length-2) {
+			lastTab = true;
+		}
 		if (this.currentTab < this.tabCreation.tabList.length-1){
 			this.currentTab = this.currentTab+1;
 			this.callBack.emit({
@@ -61,7 +65,8 @@ export class DynamicTabComponent implements OnInit {
 				toTab: {
 					name: this.tabCreation.tabList[this.currentTab],
 					index: this.currentTab
-				}
+				},
+				last: lastTab
 			});
 		}
 	}
