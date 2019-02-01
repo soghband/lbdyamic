@@ -93,11 +93,13 @@ export class CheckBoxComponent extends DynamicBehaviorComponent implements OnIni
 		});
 	}
     toggleShowCheckBox() {
-		if (this.checkboxDisplay == "checkboxHide") {
-            this.checkboxDisplay = "checkboxShow"
-		} else {
-            this.checkboxDisplay = "checkboxHide"
-        }
+		if (!this.getDisable()) {
+			if (this.checkboxDisplay == "checkboxHide") {
+				this.checkboxDisplay = "checkboxShow"
+			} else {
+				this.checkboxDisplay = "checkboxHide"
+			}
+		}
 	}
 
 	haveChecked() {

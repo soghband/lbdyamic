@@ -68,6 +68,19 @@ export class DynamicTabComponent implements OnInit {
 				},
 				last: lastTab
 			});
+		} else {
+			this.callBack.emit({
+				action: "nextTab",
+				fromTab: {
+					name: this.tabCreation.tabList[this.currentTab],
+					index: this.currentTab
+				},
+				toTab: {
+					name: this.tabCreation.tabList[this.currentTab],
+					index: this.currentTab
+				},
+				last: true
+			});
 		}
 	}
 	toggleLockTab() {
