@@ -1,6 +1,5 @@
 const fsextra = require('fs-extra');
 const Input = require('prompt-input');
-const fs = require('fs');
 const {exec} = require('child_process');
 let version;
 let input = new Input({
@@ -22,7 +21,7 @@ function coptLib() {
 }
 
 function copyCss() {
-	fs.copyFile('./src/assets/css/dynamic-form.css', './lib/src/css/dynamic-form.css', err => {
+	fsextra.copy('./src/assets/css/dynamic-form.css', './lib/src/css/dynamic-form.css', err => {
 		if (err) return console.error(err);
 		console.log('Copied Asset files');
 		createDeclarations();
@@ -73,8 +72,7 @@ function createPackageJson() {
 }
 
 function modifyVersionJaon() {
-	let data = fs.readFileSync("./lib/package.json");
-	let package = JSON.parse(data);
+	let package = fsextra.readJsonSync("./lib/package.json");
 	package.version = version;
 	fsextra.writeJson('./lib/package.json', package, {spaces: 2}, err => {
 		if (err) return console.error(err);
