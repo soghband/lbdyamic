@@ -146,7 +146,7 @@ export class AutoCompleteComponent extends DynamicBehaviorComponent implements O
                 }
                 this.filterAutoComplete(dataIndex);
             }
-            if (event.keyCode == 13 && typeof(this.autoCompleteFilterList[dataIndex][this.selectIndex]) != "undefined") {
+            if (event.which == 13 && typeof(this.autoCompleteFilterList[dataIndex][this.selectIndex]) != "undefined") {
                 this.hideList(dataIndex);
             } else if (event.ctrlKey == true && (event.charCode == 86 || event.which == 86)) {
                 if (String(this.data[this.fieldCreation.fieldName][dataIndex]).match(this.fieldCreation.valuePattern)) {
@@ -172,9 +172,9 @@ export class AutoCompleteComponent extends DynamicBehaviorComponent implements O
 		if (this.allowTempData == true) {
         	this.tempValueValidate = this.data[this.fieldCreation.fieldName][dataIndex].display;
 		}
-        if (event.keyCode == 38 && this.selectIndex > 0) {
+        if (event.which == 38 && this.selectIndex > 0) {
             this.selectIndex--;
-        } else if (event.keyCode == 40 && this.selectIndex < (this.autoCompleteFilterList[dataIndex].length-1)) {
+        } else if (event.which == 40 && this.selectIndex < (this.autoCompleteFilterList[dataIndex].length-1)) {
             this.selectIndex++;
         }
         this.callBack.emit({
@@ -232,18 +232,26 @@ export class AutoCompleteComponent extends DynamicBehaviorComponent implements O
 			dataIndex:dataIndex,
 			fieldName:this.fieldCreation.fieldName
 		});
-		if (event.keyCode == 32 || event.keyCode > 46){
+		if (event.which == 32 || event.which > 46){
 			let key = event.key;
 			if (!String(key).match(this.fieldCreation.inputPattern)) {
 				return false;
 			}
 		}
-		if (event.keyCode == 13 && typeof(this.autoCompleteFilterList[dataIndex][this.selectIndex]) != "undefined") {
+		if (event.which == 13 && typeof(this.autoCompleteFilterList[dataIndex][this.selectIndex]) != "undefined") {
 			this.data[this.fieldCreation.fieldName][dataIndex] = Object.assign({} , this.autoCompleteFilterList[dataIndex][this.selectIndex]);
+			let data =  Object.assign({},this.autoCompleteFilterList[dataIndex][this.selectIndex])
 			this.selectIndex = 0;
+			this.callBack.emit({
+				event:event,
+				action:'assignData',
+				dataIndex:dataIndex,
+				fieldName:this.fieldCreation.fieldName,
+				assignData:data
+			});
 		}
 
-        if (event.keyCode != 46 && event.keyCode != 8 && event.ctrlKey != true && event.altKey != true){
+        if (event.which != 46 && event.which != 8 && event.ctrlKey != true && event.altKey != true){
             let key = event.key;
             let combineValue;
             if (typeof(this.tempValueValidate) != "undefined") {
