@@ -20,6 +20,7 @@
     "styles": [
       "../src/styles.css",
       "../src/assets/css/dynamic-form.css",
+      "../src/assets/css/custom-ui-editor-form.css",
       "../src/assets/css/font.css",
       "../src/assets/vendor/bootstrap/css/bootstrap.css",
       "../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"

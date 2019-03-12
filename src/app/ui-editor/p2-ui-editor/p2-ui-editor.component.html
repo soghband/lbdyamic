@@ -1,48 +1,48 @@
 <app-panel-main [header]="'User Interface Editor'" [margin]="true">
     <div class="uiEditPanel">
         <div class="uiEditRow">
-            <div class="uiEditControlPanel uiCell componentControl">
-                <app-panel-child [header]="'Component'">
-                    <div class="contentPanel contentPanelGray">
-                        <div class="containerBox">
-                            Container
-                        </div>
-                        <hr>
-                        <div class="componentBox">
-                            Label
-                        </div>
-                        <div class="componentBox">
-                            Hidden
-                        </div>
-                        <div class="componentBox">
-                            Auto Complete
-                        </div>
-                        <div class="componentBox">
-                            Text Box
-                        </div>
-                        <div class="componentBox">
-                            Text Area
-                        </div>
-                        <div class="componentBox">
-                            Drop Down
-                        </div>
-                        <div class="componentBox">
-                            Check Box
-                        </div>
-                    </div>
-                </app-panel-child>
-            </div>
+            <!--<div class="uiEditControlPanel uiCell componentControl">-->
+                <!--<app-panel-child [header]="'Component'">-->
+                    <!--<div class="contentPanel contentPanelGray">-->
+                        <!--<div class="containerBox">-->
+                            <!--Container-->
+                        <!--</div>-->
+                        <!--<hr>-->
+                        <!--<div class="componentBox">-->
+                            <!--Label-->
+                        <!--</div>-->
+                        <!--<div class="componentBox">-->
+                            <!--Hidden-->
+                        <!--</div>-->
+                        <!--<div class="componentBox">-->
+                            <!--Auto Complete-->
+                        <!--</div>-->
+                        <!--<div class="componentBox">-->
+                            <!--Text Box-->
+                        <!--</div>-->
+                        <!--<div class="componentBox">-->
+                            <!--Text Area-->
+                        <!--</div>-->
+                        <!--<div class="componentBox">-->
+                            <!--Drop Down-->
+                        <!--</div>-->
+                        <!--<div class="componentBox">-->
+                            <!--Check Box-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</app-panel-child>-->
+            <!--</div>-->
             <div class="uiCell">
                 <app-panel-child [header]="'Example Form'">
                     <div class="contentPanel contentPanelGray">
-                        <app-dynamic-form [formCreation]="formCreation"
+                        <app-dynamic-form #exampleRef [formCreation]="formCreation"
                                           (panelCallBack)="processPanelCallBack($event)"></app-dynamic-form>
                     </div>
                 </app-panel-child>
             </div>
             <div class="uiPropertiesPanel uiCell propertiesControl">
                 <app-panel-child [header]="'Properties'">
-                    <div class="contentPanel contentPanelGray p2DynamicTabPanel">
+                    <div class="contentPanel contentPanelGray p2DynamicTabPanel" id="propertiesControl">
                         <app-dynamic-tab #tabRef [tabCreation]="propertiesTab"
                                          (callBack)="precessTabCallBack($event)"></app-dynamic-tab>
                         <div class="tabContentPanel {{tabRef.getCssStatus(0)}}">
@@ -61,10 +61,10 @@
                         </div>
                         <div class="tabContentPanel {{tabRef.getCssStatus(2)}}">
                             <div class="fixMaxHeight" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
-                                <app-dynamic-form [formCreation]="componentPropertiesForm"></app-dynamic-form>
+                                <app-dynamic-form #componentEditRef [formCreation]="componentPropertiesForm"></app-dynamic-form>
                             </div>
                             <div class="btnPanel">
-                                <div class="btn-style-dynamic btn-small">Set</div>
+                                <div class="btn-style-dynamic btn-small" (click)="processSetField()">Set</div>
                             </div>
                         </div>
                     </div>

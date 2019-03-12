@@ -8,6 +8,7 @@ export class DynamicBehaviorComponent {
     @Input() data;
     @Input() rowIndex;
     @Output() callBack = new EventEmitter();
+    @Output() panelCallBack = new EventEmitter();
 	getLabelWidth() {
 		let width = "";
 		if (typeof(this.fieldCreation.labelWidth) != "undefined") {
@@ -54,5 +55,10 @@ export class DynamicBehaviorComponent {
 
 		}
 		return check;
+	}
+	processPanelCallBack(event) {
+		this.panelCallBack.emit({
+			feildName: this.fieldCreation.fieldName
+		});
 	}
 }

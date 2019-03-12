@@ -12,7 +12,6 @@ export class TextBoxComponent extends DynamicBehaviorComponent implements OnInit
  	@Input() inputIndex;
  	@Input() rowIndex;
 	@Output() callBack = new EventEmitter();
-	@Output() panelCallBack = new EventEmitter();
 	columnCalculate = "";
 	objKeys = Object.keys;
 	tempValue;
@@ -144,13 +143,4 @@ export class TextBoxComponent extends DynamicBehaviorComponent implements OnInit
         });
         return validate;
 	}
-	processCall(data) {
-
-	}
-	processPanelCallBack() {
-		this.panelCallBack.emit({
-			feildName: this.fieldCreation.fieldName
-		});
-	}
-
 }

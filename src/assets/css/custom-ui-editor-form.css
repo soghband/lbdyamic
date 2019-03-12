@@ -1,0 +1,6 @@
+.hoverField .dp2FieldPanel:hover {
+  background: rgba(0, 0, 255, 0.1); }
+
+#propertiesControl {
+  min-height: calc(40vh + 100px);
+  max-height: calc(40vh + 100px); }

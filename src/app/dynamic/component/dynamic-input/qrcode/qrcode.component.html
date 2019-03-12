@@ -1,4 +1,4 @@
-<div class="dp2FieldPanel {{columnCalculate}} {{getCustomClass()}}" [style.width]="fieldCreation.width">
+<div class="dp2FieldPanel {{columnCalculate}} {{getCustomClass()}}" [style.width]="fieldCreation.width" (click)="processPanelCallBack($event)">
     <app-dynamic-form-label-panel
             [fieldCreation]="fieldCreation"
             [option]="option"

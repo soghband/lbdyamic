@@ -1,4 +1,4 @@
-<div class="dp2FieldPanel {{columnCalculate}} {{getCustomClass()}}" [style.width]="fieldCreation.width">
+<div class="dp2FieldPanel {{columnCalculate}} {{getCustomClass()}}" [style.width]="fieldCreation.width" (click)="processPanelCallBack($event)">
     <app-dynamic-form-label-panel
             [fieldCreation]="fieldCreation"
             [option]="option"
@@ -15,7 +15,7 @@
             </div>
         </ng-container>
         <div *ngIf="option.mode != 'view'" class="upload">
-            <input type="file" class="fullWidth" id="id_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}{{(dataIndex > 0 ? '_'+dataIndex:'')}}" name="{{fieldCreation.fieldName}}"
+            <input type="file" class="fullWidth" id="id_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}{{'_'+rowIndex}}" name="{{fieldCreation.fieldName}}"
                    [disabled]="getDisable()" (change)="handleFileSelect($event)"
                    [multiple]="fieldCreation.multiValue"/>
         </div>

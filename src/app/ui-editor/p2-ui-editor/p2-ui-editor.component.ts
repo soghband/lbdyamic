@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {DynamicTabComponent} from "../../dynamic/component/dynamic-tab/dynamic-tab.component";
+import {DynamicFormComponent} from '../../dynamic/component/dynamic-form/dynamic-form.component';
+import {isArray, isNumber} from 'util';
 
 @Component({
 	selector: 'app-p2-ui-editor',
@@ -9,7 +11,8 @@ import {DynamicTabComponent} from "../../dynamic/component/dynamic-tab/dynamic-t
 
 export class P2UiEditorComponent implements OnInit {
 	@ViewChild('tabRef') tabRef: DynamicTabComponent;
-
+	@ViewChild('componentEditRef') componentEditVC: DynamicFormComponent;
+	@ViewChild('exampleRef') exampleVC: DynamicFormComponent;
 	importData = {
 		data: "[{\"a\":\"1\",\"b\":\"2\",\"c\":\"3\"},{\"d\":\"4\",\"e\":\"5\",\"f\":\"6\"}]"
 	};
@@ -17,7 +20,7 @@ export class P2UiEditorComponent implements OnInit {
 		form: {
 			option: {
 				mode: "edit",
-				className: "defaultDynamicForm",
+				customClass: "hoverField",
 				labelAlign: "left"
 			},
 			containerList: []
@@ -314,6 +317,9 @@ export class P2UiEditorComponent implements OnInit {
 							columnPerLine: 1,
 							multiValue: false,
 							valueList: [{
+									display: "Number",
+									value:"number"
+								},{
 									display: "Text Box",
 									value:"textBox"
 								},{
@@ -345,6 +351,24 @@ export class P2UiEditorComponent implements OnInit {
 								},{
 									display: "Button",
 									value:"button"
+								},{
+									display: "Button Icon",
+									value:"buttonIcon"
+								},{
+									display: "Swapping Box",
+									value:"swappingBox"
+								},{
+									display: "Map Value",
+									value:"mapValue"
+								},{
+									display: "QRCode",
+									value:"qrCode"
+								},{
+									display: "Radio",
+									value:"radio"
+								},{
+									display: "Date",
+									value:"date"
 								}],
 							default: ["textBox"]
 						},
@@ -372,7 +396,7 @@ export class P2UiEditorComponent implements OnInit {
 							fieldName: "columnPerLine",
 							type: "selectBox",
 							label: "Column Per Line",
-							columnPerLine: 1,
+							columnPerLine: 2,
 							multiValue: false,
 							valueList: [{
 								display: "1",
@@ -388,6 +412,21 @@ export class P2UiEditorComponent implements OnInit {
 								value:"4"
 							}],
 							default: ["1"]
+						},
+						{
+							fieldName: "smallButton",
+							type: "selectBox",
+							label: "Small Button",
+							columnPerLine: 2,
+							multiValue: false,
+							valueList: [{
+								display: "Yes",
+								value:true
+							},{
+								display: "No",
+								value:false
+							}],
+							default: [false]
 						},
 						{
 							fieldName: "labelWidth",
@@ -447,12 +486,12 @@ export class P2UiEditorComponent implements OnInit {
 							multiValue: false,
 							valueList: [{
 								display: "Yes",
-								value:false
+								value:true
 							},{
 								display: "No",
-								value:true
+								value:false
 							}],
-							default: [true]
+							default: [false]
 						},
 						{
 							fieldName: "fixedValue",
@@ -477,10 +516,10 @@ export class P2UiEditorComponent implements OnInit {
 							multiValue: false,
 							valueList: [{
 								display: "Yes",
-								value:false
+								value:true
 							},{
 								display: "No",
-								value:true
+								value:false
 							}],
 							default: [true]
 						},
@@ -500,7 +539,7 @@ export class P2UiEditorComponent implements OnInit {
 							default: [true]
 						},
                         {
-                            fieldName: "mapValue",
+                            fieldName: "valueList",
                             type: "mapValue",
                             label: "Display Value",
                             inputPattern: /./,
@@ -510,7 +549,37 @@ export class P2UiEditorComponent implements OnInit {
                             default: [""],
                         },
 						{
-							fieldName: "defaultText",
+							fieldName: "maxLength",
+							type: "number",
+							label: "Max Length",
+							inputPattern: /^[0-9]$/,
+							valuePattern: /^\d*$/,
+							columnPerLine: 1,
+							multiValue: false,
+							default: ["120"],
+						},
+						{
+							fieldName: "min",
+							type: "number",
+							label: "Min",
+							inputPattern: /^[0-9]$/,
+							valuePattern: /^\d*$/,
+							columnPerLine: 2,
+							multiValue: false,
+							default: ["1"],
+						},
+						{
+							fieldName: "max",
+							type: "number",
+							label: "Max",
+							inputPattern: /^[0-9]$/,
+							valuePattern: /^\d*$/,
+							columnPerLine: 2,
+							multiValue: false,
+							default: ["999"],
+						},
+						{
+							fieldName: "default",
 							type: "textBox",
 							label: "Default",
 							inputPattern: /./,
@@ -530,20 +599,24 @@ export class P2UiEditorComponent implements OnInit {
 			inputPattern:[""],
 			valuePattern:[""],
 			columnPerLine:["1"],
+			smallButton:[false],
 			labelWidth:["120"],
 			note:[""],
 			customClass: [""],
 			multiValue:[false],
-			defaultText:[""],
+			default:[""],
 			defaultSelect:[""],
 			fixedValue: [true],
-			readonly: [true],
+			readonly: [false],
 			require: [false],
 			showSelectAll: [true],
-            mapValue: [{
+			valueList: [{
 				display:"",
 				value:""
 			}],
+			maxLength: [255],
+			min:[1],
+			max:[999],
 			displaySingleLine: [true],
 		}]
 	};
@@ -551,6 +624,249 @@ export class P2UiEditorComponent implements OnInit {
 		option:{},
 		tabList:["Form","Container","Component"]
 	};
+	defaultTypeField = {
+		columnPerLine: "selectBox",
+		smallButton: "selectBox",
+		default: "textBox",
+		displaySingleLine: "selectBox", //checkBox
+		fieldName: "textBox",
+		fixedValue: "selectBox", //AutoComplete
+		inputPattern: "textBox",
+		label: "textBox",
+		labelWidth: "textBox",
+		valueList: "mapValue",
+		multiValue: "selectBox",
+		note: "textBox",
+		readonly: "selectBox",
+		require: "selectBox",
+		showSelectAll: "selectBox",
+		type: "selectBox",
+		valuePattern: "textBox",
+		maxLength: "number",
+		min: "number",
+		max: "number"
+	};
+	componentEditFieldList= [
+		"columnPerLine",
+		"smallButton",
+		"default",
+		"displaySingleLine",
+		"fieldName",
+		"fixedValue",
+		"inputPattern",
+		"label",
+		"labelWidth",
+		"valueList",
+		"multiValue",
+		"note",
+		"readonly",
+		"require",
+		"showSelectAll",
+		"type",
+		"valuePattern",
+		"maxLength",
+		"min",
+		"max"
+	]
+	showFieldByType = {
+		label: [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"default"
+		],
+		textBox: [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"default",
+			"inputPattern",
+			"valuePattern",
+			"multiValue",
+			"note",
+			"readonly",
+			"require",
+			"maxLength"
+		],
+		number : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"default",
+			"inputPattern",
+			"valuePattern",
+			"multiValue",
+			"note",
+			"readonly",
+			"require",
+			"maxLength",
+			"min",
+			"max"
+		],
+		textArea : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",,
+			"require",
+			"default"
+		],
+		checkBox : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",,
+			"require",
+			"default",
+			"displaySingleLine",
+			"valueList",
+			"showSelectAll"
+		],
+		selectBox : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",,
+			"require",
+			"default",
+			"valueList"
+		],
+		hidden : [
+			"fieldName",
+			"type",
+		],
+		fileUpload : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",,
+			"require",
+			"multiValue",
+		],
+		image : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",,
+			"require",
+			"multiValue",
+		],
+		autoComplete : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",,
+			"require",
+			"fixedValue",
+			"default",
+			"inputPattern",
+			"valuePattern",
+			"multiValue",
+			"valueList",
+			"maxLength"
+		],
+		button : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",,
+			"require",
+			"default",
+			"valueList",
+			"smallButton",
+		],
+		buttonIcon : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",,
+			"require",
+			"default",
+			"valueList",
+		],
+		swappingBox : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",,
+			"require",
+			"default",
+			"valueList"
+		],
+		mapValue : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",,
+			"require",
+			"default",
+			"valueList"
+		],
+		qrCode : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",,
+			"require",
+			"default"
+		],
+		radio : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",
+			"default",
+			"displaySingleLine",,
+			"require",
+			"valueList"
+		],
+		date : [
+			"fieldName",
+			"label",
+			"labelWidth",
+			"columnPerLine",
+			"type",
+			"readonly",
+			"multiValue",
+			"require",
+			"default",
+		],
+	};
+	selectedContainer = 0;
+	selectedFieldIndex = 0;
+	selectedFieldName = "";
+	tempFieldType = "";
+
 	public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
 	constructor() {
 
@@ -595,14 +911,107 @@ export class P2UiEditorComponent implements OnInit {
 				containerList.push(container);
 			}
 			this.formCreation.form.containerList = containerList;
+			this.formCreation.data = [];
 			this.formCreation.data.push(data);
 		}
 	}
 	processPanelCallBack(event) {
-		console.log(event);
+		console.log(event)
+		let componentType = this.exampleVC.getFieldAttribute(event.feildName,"type");
+		this.selectedContainer = event.containerIndex;
+		this.selectedFieldIndex = event.fieldIndex;
+		this.selectedFieldName = event.fieldName;
+		this.setComponentEditAbleField(event.feildName,componentType);
 	}
 
 	precessTabCallBack(event) {
 		console.log(event)
 	}
+	setComponentEditAbleField(exFieldName,type) {
+		let fieldShowList = this.showFieldByType[type];
+		let mapSetChangeType = {}
+		let attributeValue = {}
+
+		for (let fieldName of this.componentEditFieldList) {
+			let type = "hidden";
+			if (fieldShowList.indexOf(fieldName) > -1) {
+				type = this.defaultTypeField[fieldName]
+			}
+			if (type != "hidden") {
+				let getValue = this.exampleVC.getFieldAttribute(exFieldName,fieldName);
+				attributeValue[fieldName] = this.valueConvertToValue(getValue,fieldName);
+			}
+			mapSetChangeType[fieldName] = {
+				type:type
+			}
+		}
+		this.componentEditVC.mapSetAttribute(mapSetChangeType);
+		this.componentEditVC.mapSetValue(attributeValue,0);
+		if (this.tempFieldType != type) {
+			this.componentEditVC.reRenderForm();
+			this.tempFieldType = type;
+		}
+	}
+
+	processSetField() {
+		let newFieldName = this.componentEditVC.getDataValue("fieldName",0,0);
+		let type = this.componentEditVC.getDataValue("type",0,0);
+		this.formCreation.data[0][newFieldName] = this.processAssignValueByType(type);
+		let setFieldOption = {};
+		let fieldAttributeList = this.showFieldByType[type]
+		for (let attribute of fieldAttributeList) {
+			let value;
+			if (attribute == "valueList") {
+				value = this.componentEditVC.getDataValue(attribute,0);
+			} else {
+				value = this.componentEditVC.getDataValue(attribute,0,0);
+			}
+			setFieldOption[attribute] = this.valueConvertForForm(value, attribute);
+		}
+		this.formCreation.form.containerList[this.selectedContainer].fieldList[this.selectedFieldIndex] = setFieldOption;
+		if (this.selectedFieldName != newFieldName) {
+			delete this.formCreation.data[0][this.selectedFieldName]
+			this.selectedFieldName = newFieldName;
+		}
+		this.exampleVC.reRenderForm();
+		this.setComponentEditAbleField(this.selectedFieldName ,type);
+	}
+	processAssignValueByType(type) {
+		if (type == "autoComplete") {
+			return [{
+				display:"",
+				value:""
+			}]
+		} else {
+			return [""];
+		}
+	}
+
+	private valueConvertForForm(value,fieldType) {
+		if (value == "true" || value == "false"){
+			return value == "true";
+		} else if (fieldType == "inputPattern" || fieldType == "valuePattern") {
+			return new RegExp(value);
+		}
+		return value;
+	}
+	private valueConvertToValue(value,fieldType) {
+		if (fieldType == "inputPattern" || fieldType == "valuePattern") {
+			let valueGet = value.toString();
+			let returnValue = valueGet.replace(/(^\/|\/$)/g, "");
+			return returnValue;
+		} else if (fieldType == "valueList") {
+			if (value != undefined) {
+				return value;
+			}
+			return [{
+				display:"",
+				value:""
+			}]
+		} else if (!isNumber(value)) {
+			return String(value);
+		}
+		return value;
+	}
+
 }

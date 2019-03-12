@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
     selector: 'app-dynamic-form-label-panel',
@@ -8,6 +8,7 @@ export class DynamicFormLabelPanelComponent implements OnInit {
     @Input() fieldCreation;
     @Input() option;
     @Input() width;
+    @Output() panelCallBack = new EventEmitter();
     constructor() {
     }
 
@@ -22,5 +23,8 @@ export class DynamicFormLabelPanelComponent implements OnInit {
         } else {
             return "";
         }
+    }
+    processPanelCallBack(event) {
+        this.panelCallBack.emit(event);
     }
 }

@@ -17,7 +17,7 @@ export class CheckBoxComponent extends DynamicBehaviorComponent implements OnIni
 	showSelectAll = "dp2hide";
 	selectAll = false;
 	singleLine = "";
-    scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
+    scrollbarOptions = {axis: 'y', theme: 'minimal-dark'};
     checkboxDisplay = "checkboxHide";
 	constructor() {
 		super();
