@@ -47,10 +47,16 @@
       max-width: 340px;
       width: 320px; }
 
-.importTextArea {
-  max-width: 100%;
-  min-width: 100%;
+.importExportPanel {
   width: 100%; }
+
+.importExportCell {
+  max-width: 50%; }
+
+.importTextArea {
+  max-width: 45vw;
+  min-width: 45vw;
+  width: 45vw; }
 
 .btnPanel {
   margin-top: 10px;

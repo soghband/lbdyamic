@@ -16,6 +16,9 @@ export class P2UiEditorComponent implements OnInit {
 	importData = {
 		data: "[{\"a\":\"1\",\"b\":\"2\",\"c\":\"3\"},{\"d\":\"4\",\"e\":\"5\",\"f\":\"6\"}]"
 	};
+    exportData = {
+		data: ""
+	};
 	formCreation = {
 		form: {
 			option: {
@@ -866,7 +869,8 @@ export class P2UiEditorComponent implements OnInit {
 	selectedFieldIndex = 0;
 	selectedFieldName = "";
 	tempFieldType = "";
-
+	fieldSelected = false;
+	importFlag = false;
 	public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
 	constructor() {
 
@@ -884,6 +888,7 @@ export class P2UiEditorComponent implements OnInit {
 			alert("Json format mismatch.");
 		}
 		if (continueGenerate == true) {
+            this.importFlag = true
 			let data = {};
 			let containerList = [];
 			for(let containerIndex in json) {
@@ -917,6 +922,7 @@ export class P2UiEditorComponent implements OnInit {
 	}
 	processPanelCallBack(event) {
 		console.log(event)
+		this.fieldSelected = true;
 		let componentType = this.exampleVC.getFieldAttribute(event.feildName,"type");
 		this.selectedContainer = event.containerIndex;
 		this.selectedFieldIndex = event.fieldIndex;
@@ -954,27 +960,29 @@ export class P2UiEditorComponent implements OnInit {
 	}
 
 	processSetField() {
-		let newFieldName = this.componentEditVC.getDataValue("fieldName",0,0);
-		let type = this.componentEditVC.getDataValue("type",0,0);
-		this.formCreation.data[0][newFieldName] = this.processAssignValueByType(type);
-		let setFieldOption = {};
-		let fieldAttributeList = this.showFieldByType[type]
-		for (let attribute of fieldAttributeList) {
-			let value;
-			if (attribute == "valueList") {
-				value = this.componentEditVC.getDataValue(attribute,0);
-			} else {
-				value = this.componentEditVC.getDataValue(attribute,0,0);
+		if (this.fieldSelected) {
+			let newFieldName = this.componentEditVC.getDataValue("fieldName",0,0);
+			let type = this.componentEditVC.getDataValue("type",0,0);
+			this.formCreation.data[0][newFieldName] = this.processAssignValueByType(type);
+			let setFieldOption = {};
+			let fieldAttributeList = this.showFieldByType[type]
+			for (let attribute of fieldAttributeList) {
+				let value;
+				if (attribute == "valueList") {
+					value = this.componentEditVC.getDataValue(attribute,0);
+				} else {
+					value = this.componentEditVC.getDataValue(attribute,0,0);
+				}
+				setFieldOption[attribute] = this.valueConvertForForm(value, attribute);
 			}
-			setFieldOption[attribute] = this.valueConvertForForm(value, attribute);
+			this.formCreation.form.containerList[this.selectedContainer].fieldList[this.selectedFieldIndex] = setFieldOption;
+			if (this.selectedFieldName != newFieldName) {
+				delete this.formCreation.data[0][this.selectedFieldName]
+				this.selectedFieldName = newFieldName;
+			}
+			this.exampleVC.reRenderForm();
+			this.setComponentEditAbleField(this.selectedFieldName ,type);
 		}
-		this.formCreation.form.containerList[this.selectedContainer].fieldList[this.selectedFieldIndex] = setFieldOption;
-		if (this.selectedFieldName != newFieldName) {
-			delete this.formCreation.data[0][this.selectedFieldName]
-			this.selectedFieldName = newFieldName;
-		}
-		this.exampleVC.reRenderForm();
-		this.setComponentEditAbleField(this.selectedFieldName ,type);
 	}
 	processAssignValueByType(type) {
 		if (type == "autoComplete") {
@@ -1014,4 +1022,37 @@ export class P2UiEditorComponent implements OnInit {
 		return value;
 	}
 
+	processExport() {
+	    if (this.importFlag == true) {
+            let exportData = Object.assign({},this.formCreation);
+            for (let containerRow in exportData.form.containerList) {
+                for (let fieldAttrRow in exportData.form.containerList[containerRow].fieldList) {
+                    for (let attribute in exportData.form.containerList[containerRow].fieldList[fieldAttrRow]){
+                        if (attribute == "inputPattern" || attribute == "valuePattern") {
+                            let val = String(exportData.form.containerList[containerRow].fieldList[fieldAttrRow][attribute]);
+                            exportData.form.containerList[containerRow].fieldList[fieldAttrRow][attribute] = val;
+                        }
+                    }
+                }
+            }
+            let exportJson = JSON.stringify(exportData, null, "\t");
+            let match = exportJson.match(/"\w*":/gm);
+            for (let matchRow of match) {
+                let search = matchRow;
+                let replace = matchRow.replace(/"/g,"");
+                exportJson = exportJson.replace(search,replace);
+            }
+            let match2 = exportJson.match(/"\/.*\/"/gm);
+            if (match2 != null) {
+                for (let match2Row of match2) {
+                    let search = match2Row;
+                    let replace = match2Row.replace(/(^"|"$)/g,"");
+                    exportJson = exportJson.replace(search,replace);
+                }
+            }
+            this.exportData.data = exportJson;
+
+        }
+	}
 }
+

@@ -73,12 +73,27 @@
         </div>
     </div>
     <div class="uiCell">
-        <app-panel-child [header]="'Generate From Data'">
-            <div class="contentPanel">
-            <textarea class="importTextArea" [(ngModel)]="importData.data">
-            </textarea>
-                <div class="btn-style-dynamic" (click)="processGenerate()">Generate</div>
+        <div class="uiEditPanel importExportPanel">
+            <div class="uiEditRow">
+                <div class="uiCell importExportCell">
+                    <app-panel-child [header]="'Generate From Data'">
+                        <div class="contentPanel">
+                        <textarea class="importTextArea" [(ngModel)]="importData.data">
+                        </textarea>
+                            <div class="btn-style-dynamic" (click)="processGenerate()">Generate Import</div>
+                        </div>
+                    </app-panel-child>
+                </div>
+                <div class="uiCell">
+                    <app-panel-child [header]="'Export JSON'">
+                        <div class="contentPanel">
+                            <textarea class="importTextArea" [(ngModel)]="exportData.data">
+                            </textarea>
+                            <div class="btn-style-dynamic" (click)="processExport()">Export</div>
+                        </div>
+                    </app-panel-child>
+                </div>
             </div>
-        </app-panel-child>
+        </div>
     </div>
 </app-panel-main>
