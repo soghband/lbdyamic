@@ -9,7 +9,7 @@ import {FileUploadComponent} from '../dynamic-input/file-upload/file-upload.comp
 import {ImageComponent} from '../dynamic-input/image/image.component';
 import {AutoCompleteComponent} from '../dynamic-input/auto-complete/auto-complete.component';
 import {ButtonComponent} from '../dynamic-input/button/button.component';
-import {isArray, isNumber, isString} from 'util';
+import {isArray, isNumber, isObject, isString} from 'util';
 import {SwappingBoxComponent} from '../dynamic-input/swapping-box/swapping-box.component';
 import {MapValueComponent} from '../dynamic-input/map-value/map-value.component';
 import {QrCodeComponent} from '../dynamic-input/qrcode/qrcode.component';
@@ -1042,14 +1042,33 @@ export class DynamicFormComponent implements OnInit {
     }
     duplicateToNewRow(sourceRow = 0,sourceAction=null) {
         let dataNewRow = {};
+        let haveData = false;
         if (this.formCreation.data[sourceRow] != undefined) {
             dataNewRow = Object.assign({},this.formCreation.data[sourceRow]);
-            this.formCreation.data.push(dataNewRow);
+            haveData = true;
         } else if (this.formCreation.data.length > 0) {
-            dataNewRow = Object.assign({},0);
-            this.formCreation.data.push(dataNewRow);
+            dataNewRow = Object.assign({},this.formCreation.data[0]);
+            haveData = true;
         } else {
             console.error("duplicate new row fail not found any data")
+        }
+        if (haveData) {
+            let defaultValue = Object.assign({}, this.getDefault());
+            for (let fieldName in defaultValue) {
+                if (dataNewRow[fieldName] != undefined) {
+                    let value = Object.assign([], dataNewRow[fieldName])
+                    let newValue = [];
+                    for (let valueRow of value) {
+                        if (isObject(valueRow)) {
+                            newValue.push(Object.assign({},valueRow))
+                        } else {
+                            newValue.push(valueRow);
+                        }
+                    }
+                    defaultValue[fieldName] = newValue;
+                }
+            }
+            this.formCreation.data.push(defaultValue);
         }
         this.callBack.emit({
             action: 'duplicateToNewRow',
