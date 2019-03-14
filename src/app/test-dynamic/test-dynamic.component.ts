@@ -1459,4 +1459,8 @@ export class TestDynamicComponent implements OnInit {
 	testEnableTab() {
 		this.tabListRef.enableTab(5);
 	}
+
+	testDuplicateToNewRow() {
+		this.dynamicFormTable.duplicateToNewRow(0);
+	}
 }

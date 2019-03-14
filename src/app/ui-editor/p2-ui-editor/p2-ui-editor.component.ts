@@ -12,6 +12,7 @@ import {isArray, isNumber} from 'util';
 export class P2UiEditorComponent implements OnInit {
 	@ViewChild('tabRef') tabRef: DynamicTabComponent;
 	@ViewChild('componentEditRef') componentEditVC: DynamicFormComponent;
+	@ViewChild('containerEditRef') containerEditVC: DynamicFormComponent;
 	@ViewChild('exampleRef') exampleVC: DynamicFormComponent;
 	importData = {
 		data: "[{\"a\":\"1\",\"b\":\"2\",\"c\":\"3\"},{\"d\":\"4\",\"e\":\"5\",\"f\":\"6\"}]"
@@ -396,6 +397,21 @@ export class P2UiEditorComponent implements OnInit {
 							default: [""],
 						},
 						{
+							fieldName: "validateWhileKeyPress",
+							type: "selectBox",
+							label: "Validate On Keypress",
+							columnPerLine: 1,
+							multiValue: false,
+							valueList: [{
+								display: "Yes",
+								value:true
+							},{
+								display: "No",
+								value:false
+							}],
+							default: [false]
+						},
+						{
 							fieldName: "columnPerLine",
 							type: "selectBox",
 							label: "Column Per Line",
@@ -603,6 +619,7 @@ export class P2UiEditorComponent implements OnInit {
 			valuePattern:[""],
 			columnPerLine:["1"],
 			smallButton:[false],
+			validateWhileKeyPress:[false],
 			labelWidth:["120"],
 			note:[""],
 			customClass: [""],
@@ -634,6 +651,7 @@ export class P2UiEditorComponent implements OnInit {
 		displaySingleLine: "selectBox", //checkBox
 		fieldName: "textBox",
 		fixedValue: "selectBox", //AutoComplete
+		validateWhileKeyPress: "selectBox", //AutoComplete
 		inputPattern: "textBox",
 		label: "textBox",
 		labelWidth: "textBox",
@@ -667,10 +685,11 @@ export class P2UiEditorComponent implements OnInit {
 		"showSelectAll",
 		"type",
 		"valuePattern",
+		"validateWhileKeyPress",
 		"maxLength",
 		"min",
 		"max"
-	]
+	];
 	showFieldByType = {
 		label: [
 			"fieldName",
@@ -689,6 +708,7 @@ export class P2UiEditorComponent implements OnInit {
 			"default",
 			"inputPattern",
 			"valuePattern",
+			"validateWhileKeyPress",
 			"multiValue",
 			"note",
 			"readonly",
@@ -921,13 +941,14 @@ export class P2UiEditorComponent implements OnInit {
 		}
 	}
 	processPanelCallBack(event) {
-		console.log(event)
+		console.log(event);
 		this.fieldSelected = true;
 		let componentType = this.exampleVC.getFieldAttribute(event.feildName,"type");
 		this.selectedContainer = event.containerIndex;
 		this.selectedFieldIndex = event.fieldIndex;
 		this.selectedFieldName = event.fieldName;
 		this.setComponentEditAbleField(event.feildName,componentType);
+		this.setContainerEdit(event);
 	}
 
 	precessTabCallBack(event) {
@@ -958,7 +979,9 @@ export class P2UiEditorComponent implements OnInit {
 			this.tempFieldType = type;
 		}
 	}
+	setContainerEdit(containerIndex) {
 
+	}
 	processSetField() {
 		if (this.fieldSelected) {
 			let newFieldName = this.componentEditVC.getDataValue("fieldName",0,0);

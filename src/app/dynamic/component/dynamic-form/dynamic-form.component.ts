@@ -21,6 +21,7 @@ import {DynamicContainerTableComponent} from '../dynamic-container-table/dynamic
 import {Observable} from 'rxjs/Rx';
 import {ButtonIconComponent} from '../dynamic-input/button-icon/button-icon.component';
 import {DynamicFormMode} from '../dynamic-form-mode';
+import Integer from '@soghband/zxing-library-4ng4/esm5/core/util/Integer';
 
 @Component({
     selector: 'app-dynamic-form',
@@ -748,7 +749,7 @@ export class DynamicFormComponent implements OnInit {
         return this.formCreation.data.length;
     }
 
-    addRow(rowIndex = null) {
+    addRow(rowIndex = null, sourceAction = null) {
         let rowCount = this.getFormRow();
         let _rowIndex = rowIndex;
         if (rowIndex == null) {
@@ -779,11 +780,12 @@ export class DynamicFormComponent implements OnInit {
         this.generateFrameHeader();
         this.callBack.emit({
             action: 'addRow',
+            sourceAction: sourceAction,
             rowIndex: _rowIndex
         });
     }
 
-    deleteRow(rowIndex) {
+    deleteRow(rowIndex,sourceAction=null) {
         let check = true;
         if (isArray(rowIndex)) {
             for (let rowIndexNum of rowIndex) {
@@ -887,6 +889,7 @@ export class DynamicFormComponent implements OnInit {
         // });
         this.callBack.emit({
             action: 'deleteRow',
+            sourceAction: sourceAction,
             rowIndex: rowIndex
         });
     }
@@ -1036,6 +1039,23 @@ export class DynamicFormComponent implements OnInit {
         } else {
             console.error("Data index incorrect. Can't duplicate data.")
         }
+    }
+    duplicateToNewRow(sourceRow = 0,sourceAction=null) {
+        let dataNewRow = {};
+        if (this.formCreation.data[sourceRow] != undefined) {
+            dataNewRow = Object.assign({},this.formCreation.data[sourceRow]);
+            this.formCreation.data.push(dataNewRow);
+        } else if (this.formCreation.data.length > 0) {
+            dataNewRow = Object.assign({},0);
+            this.formCreation.data.push(dataNewRow);
+        } else {
+            console.error("duplicate new row fail not found any data")
+        }
+        this.callBack.emit({
+            action: 'duplicateToNewRow',
+            sourceAction: sourceAction,
+            sourceIndex: sourceRow
+        });
     }
     duplicateRowProcess(sourceRow,destinationRow) {
         let fieldList = this.getFieldList();

@@ -1,4 +1,4 @@
-<div class="formPanel defaultDynamicForm">
+<div class="formPanel defaultDynamicForm {{formCreation.form.option.customClass ? formCreation.form.option.customClass : ''}}">
     <form *ngIf="showForm" action="" method="post">
         <ng-container *ngIf="!formCreation.form.option.displayMode || formCreation.form.option.displayMode != 'table'">
             <ng-container *ngFor="let rowIndex of objKey(formCreation.data)">

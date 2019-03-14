@@ -3,6 +3,11 @@
         background: rgba(0,0,255,0.1)
     }
 }
+.defaultDynamicForm {
+    .fieldContainer:hover {
+        background: rgba(0,99,0,0.1)
+    }
+}
 #propertiesControl {
     min-height: calc(40vh + 100px);
     max-height: calc(40vh + 100px);

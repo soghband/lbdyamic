@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="tabContentPanel {{tabRef.getCssStatus(1)}}">
-                            <app-dynamic-form [formCreation]="containerPropertiesForm"></app-dynamic-form>
+                            <app-dynamic-form #containerEditRef [formCreation]="containerPropertiesForm"></app-dynamic-form>
                             <div class="btnPanel">
                                 <div class="btn-style-dynamic btn-small">Set</div>
                             </div>
@@ -84,7 +84,7 @@
                         </div>
                     </app-panel-child>
                 </div>
-                <div class="uiCell">
+                <div class="uiCell importExportCell">
                     <app-panel-child [header]="'Export JSON'">
                         <div class="contentPanel">
                             <textarea class="importTextArea" [(ngModel)]="exportData.data">

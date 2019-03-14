@@ -51,12 +51,12 @@
   width: 100%; }
 
 .importExportCell {
-  max-width: 50%; }
+  max-width: calc(50% - 10px); }
 
 .importTextArea {
-  max-width: 45vw;
-  min-width: 45vw;
-  width: 45vw; }
+  max-width: calc(50vw - 70px);
+  min-width: calc(50vw - 70px);
+  width: calc(50vw - 70px); }
 
 .btnPanel {
   margin-top: 10px;
