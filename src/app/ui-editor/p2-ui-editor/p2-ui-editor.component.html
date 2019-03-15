@@ -56,7 +56,7 @@
                         <div class="tabContentPanel {{tabRef.getCssStatus(1)}}">
                             <app-dynamic-form #containerEditRef [formCreation]="containerPropertiesForm"></app-dynamic-form>
                             <div class="btnPanel">
-                                <div class="btn-style-dynamic btn-small">Set</div>
+                                <div class="btn-style-dynamic btn-small" (click)="processSetContainer()">Set</div>
                             </div>
                         </div>
                         <div class="tabContentPanel {{tabRef.getCssStatus(2)}}">

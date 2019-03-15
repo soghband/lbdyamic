@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren} from '@angular/core';
 import {DynamicInputComponent} from "../dynamic-input/dynamic-input.component";
+import {Observable} from 'rxjs/Observable';
 
 @Component({
 	selector: 'app-dynamic-container',
@@ -15,6 +16,7 @@ export class DynamicContainerComponent implements OnInit {
 	@Input() reRenderField = [];
 	@Output() callBack = new EventEmitter();
 	@Output() panelCallBack = new EventEmitter();
+	emitFieldSelect = false;
 	objKey = Object.keys;
 	widthCalculator;
 
@@ -35,14 +37,27 @@ export class DynamicContainerComponent implements OnInit {
 		}
 	}
 	processCallBack(event) {
-		event.rowIndex = this.actionDataIndex
+		event.rowIndex = this.actionDataIndex;
 		this.callBack.emit(event)
 	}
 	processPanelCallBack(event) {
+		this.emitFieldSelect = true;
 		let dataEvent = Object.assign(event,{
 			containerIndex:this.containerIndex
-		})
+		});
 		this.panelCallBack.emit(dataEvent);
+		Observable.timer(200).subscribe(() =>{
+			this.emitFieldSelect = false;
+		})
+	}
+	callPanelCallBack(event) {
+		if (!this.emitFieldSelect) {
+			this.panelCallBack.emit({
+				fieldName: null,
+				fieldIndex: null,
+				containerIndex:this.containerIndex
+			});
+		}
 	}
 	getDynamicInput(inputIndex) {
 		let inputComponent = this.inputChild.find(instantInput => instantInput.inputIndex == inputIndex);

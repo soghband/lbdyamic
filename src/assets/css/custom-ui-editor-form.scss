@@ -1,11 +1,11 @@
 .hoverField {
     .dp2FieldPanel:hover {
-        background: rgba(0,0,255,0.1)
+        background: rgba(0,0,255,0.1);
+        border-radius: 5px;
     }
-}
-.defaultDynamicForm {
     .fieldContainer:hover {
-        background: rgba(0,99,0,0.1)
+        background: rgba(0,99,0,0.1);
+        border-radius: 5px;
     }
 }
 #propertiesControl {

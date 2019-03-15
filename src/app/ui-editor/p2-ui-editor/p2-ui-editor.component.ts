@@ -277,7 +277,6 @@ export class P2UiEditorComponent implements OnInit {
 		data:[{
 			containerName:[""],
 			customClass:[""],
-			columnSpan:["1/1"],
 			columnSize:["1"],
 			columnSizeOf:["1"],
 		}]
@@ -918,6 +917,7 @@ export class P2UiEditorComponent implements OnInit {
 				// }
 				let container = {
 					containerName: "Container"+containerIndex,
+					customClass: "",
 					columnSpan: "1/1",
 					fieldList: []
 				};
@@ -942,13 +942,17 @@ export class P2UiEditorComponent implements OnInit {
 	}
 	processPanelCallBack(event) {
 		console.log(event);
-		this.fieldSelected = true;
 		let componentType = this.exampleVC.getFieldAttribute(event.feildName,"type");
 		this.selectedContainer = event.containerIndex;
 		this.selectedFieldIndex = event.fieldIndex;
 		this.selectedFieldName = event.fieldName;
-		this.setComponentEditAbleField(event.feildName,componentType);
-		this.setContainerEdit(event);
+		if (event.feildName != null) {
+			this.fieldSelected = true;
+			this.setComponentEditAbleField(event.feildName,componentType);
+		} else {
+			this.fieldSelected = false;
+		}
+		this.setContainerEdit(event.containerIndex);
 	}
 
 	precessTabCallBack(event) {
@@ -978,9 +982,6 @@ export class P2UiEditorComponent implements OnInit {
 			this.componentEditVC.reRenderForm();
 			this.tempFieldType = type;
 		}
-	}
-	setContainerEdit(containerIndex) {
-
 	}
 	processSetField() {
 		if (this.fieldSelected) {
@@ -1076,6 +1077,38 @@ export class P2UiEditorComponent implements OnInit {
             this.exportData.data = exportJson;
 
         }
+	}
+
+	setContainerEdit(containerIndex) {
+		if (this.formCreation.form.containerList[containerIndex] != undefined) {
+			this.selectedContainer = containerIndex;
+			let containerName = this.formCreation.form.containerList[containerIndex].containerName;
+			let columnSpan = String(this.formCreation.form.containerList[containerIndex].columnSpan);
+			let customClass = this.formCreation.form.containerList[containerIndex].customClass;
+			let conSpanSplit = columnSpan.split("/");
+			let colSize = conSpanSplit[0];
+			let colSizeOf = conSpanSplit[1];
+			let mapValue = {
+				containerName: containerName,
+				customClass: customClass,
+				columnSize: colSize,
+				columnSizeOf: colSizeOf
+			};
+			this.containerEditVC.mapSetValue(mapValue,0);
+		}
+	}
+	processSetContainer() {
+		let mapGetValue = {
+			containerName: "containerName:STRING",
+			customClass: "customClass:STRING",
+			columnSize: "columnSize:STRING",
+			columnSizeOf: "columnSizeOf:STRING"
+		};
+		let getValue = this.containerEditVC.mapGetValue(mapGetValue,0);
+		this.formCreation.form.containerList[this.selectedContainer].containerName = getValue.containerName;
+		this.formCreation.form.containerList[this.selectedContainer].customClass = getValue.customClass;
+		this.formCreation.form.containerList[this.selectedContainer].columnSpan = getValue.columnSize+"/"+getValue.columnSizeOf;
+		this.exampleVC.reRenderForm();
 	}
 }
 
