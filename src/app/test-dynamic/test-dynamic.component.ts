@@ -31,7 +31,7 @@ export class TestDynamicComponent implements OnInit {
 		form: {
 			option: {
 				mode: "edit",
-				className: "defaultDynamicForm",
+				customClass: "defaultDynamicForm",
 				labelAlign: "left"
 			},
 			containerList : [
@@ -377,7 +377,7 @@ export class TestDynamicComponent implements OnInit {
             	formId: "table01",
             	displayMode: "table",
                 mode: "edit",
-                className: "defaultDynamicForm",
+                customClass: "defaultDynamicForm",
                 labelAlign: "left",
 				deleteRow: true,
 				deleteRowText: "Delete Row",
@@ -385,7 +385,7 @@ export class TestDynamicComponent implements OnInit {
 				enableRowIndex: [true],
 				disableList: [
                     {
-                        testTextBox:false
+                        testTextBox:true
                     },
                     {
                         testTextBox:false

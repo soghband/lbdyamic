@@ -1,0 +1,12 @@
+<div class="p2DynamicTabPanel">
+  <app-dynamic-tab #tabListRef [tabCreation]="tabCreation"></app-dynamic-tab>
+  <div class="tabContentPanel {{tabListRef.getCssStatus('User Interface Editor')}}">
+    <app-p2-ui-editor></app-p2-ui-editor>
+  </div>
+  <div class="tabContentPanel {{tabListRef.getCssStatus('Test Component')}}">
+    <app-test-dynamic></app-test-dynamic>
+  </div>
+  <div class="tabContentPanel {{tabListRef.getCssStatus('Function Manual')}}">
+    <app-function-maual></app-function-maual>
+  </div>
+</div>

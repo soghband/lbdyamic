@@ -47,10 +47,10 @@
                                          (callBack)="precessTabCallBack($event)"></app-dynamic-tab>
                         <div class="tabContentPanel {{tabRef.getCssStatus(0)}}">
                             <div class="fixMaxHeight" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
-                                <app-dynamic-form [formCreation]="formPropertiesForm"></app-dynamic-form>
+                                <app-dynamic-form #formEditRef [formCreation]="formPropertiesForm"></app-dynamic-form>
                             </div>
                             <div class="btnPanel">
-                                <div class="btn-style-dynamic btn-small">Set</div>
+                                <div class="btn-style-dynamic btn-small" (click)="processSetFormOption()">Set</div>
                             </div>
                         </div>
                         <div class="tabContentPanel {{tabRef.getCssStatus(1)}}">

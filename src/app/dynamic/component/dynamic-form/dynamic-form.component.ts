@@ -106,15 +106,18 @@ export class DynamicFormComponent implements OnInit {
 
     generateFrameHeader() {
         this.frameHeader = [];
-        if (typeof (this.formCreation.form.option.frameName) != 'undefined'
+        if (this.formCreation.form.option.frameName != undefined
+            && this.formCreation.form.option.frameName != ""
             && Array.isArray(this.formCreation.form.option.frameName)
             && this.formCreation.form.option.frameName.length == this.formCreation.data.length) {
             this.frameHeader = this.formCreation.form.option.frameName;
-        } else if (typeof (this.formCreation.form.option.frameName) != 'undefined'
+        } else if (this.formCreation.form.option.frameName != undefined
+            && this.formCreation.form.option.frameName != ""
             && !Array.isArray(this.formCreation.form.option.frameName)
             && this.formCreation.data.length == 1) {
             this.frameHeader[0] = this.formCreation.form.option.frameName;
-        } else if (typeof (this.formCreation.form.option.frameName) != 'undefined'
+        } else if (this.formCreation.form.option.frameName != undefined
+            && this.formCreation.form.option.frameName != ""
             && !Array.isArray(this.formCreation.form.option.frameName)
             && this.formCreation.data.length > 1) {
             let count = 0;
@@ -191,7 +194,15 @@ export class DynamicFormComponent implements OnInit {
     }
 
     reRenderForm() {
+        this.getDefault();
         this.refineContainerTableMode();
+        if (this.formCreation.form.option.frame == true) {
+            this.generateFrameHeader();
+        };
+        this.getFieldLabel();
+        if (this.formCreation.form.option.displayMode == "table") {
+            this.refineContainerTableMode();
+        };
         this.showForm = false;
         Observable.interval(100)
             .takeWhile(() => !this.showForm)
@@ -596,6 +607,9 @@ export class DynamicFormComponent implements OnInit {
         } else if (dataType == 'float' && !isNumber(data)) {
             let returnData = parseFloat(data);
             return (isNaN(returnData) ? 0 : returnData);
+        } else if (dataType == 'bool' && isString(data) && (data.toLowerCase()=="true" || data.toLowerCase()=="false")) {
+            let returnData = (data == "true");
+            return returnData;
         } else {
             return data;
         }
@@ -776,8 +790,8 @@ export class DynamicFormComponent implements OnInit {
         this.addDataTimer = Observable.timer(200).subscribe(()=>{
             this.formCreation.data = Object.assign([],this.tempAddData);
             this.onAddProcess = false;
+            this.generateFrameHeader();
         });
-        this.generateFrameHeader();
         this.callBack.emit({
             action: 'addRow',
             sourceAction: sourceAction,
@@ -874,6 +888,7 @@ export class DynamicFormComponent implements OnInit {
                 this.formCreation.form.option.disableDelete = Object.assign([],tempDisableDeleteData);
                 this.formCreation.form.option.disableList = Object.assign([],tempDisableListData);
                 this.onDeleteProcess = false;
+                this.generateFrameHeader();
             });
         }
         this.generateFrameHeader();

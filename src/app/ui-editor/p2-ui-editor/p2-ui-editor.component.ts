@@ -11,6 +11,7 @@ import {isArray, isNumber} from 'util';
 
 export class P2UiEditorComponent implements OnInit {
 	@ViewChild('tabRef') tabRef: DynamicTabComponent;
+	@ViewChild('formEditRef') formEditVC: DynamicFormComponent;
 	@ViewChild('componentEditRef') componentEditVC: DynamicFormComponent;
 	@ViewChild('containerEditRef') containerEditVC: DynamicFormComponent;
 	@ViewChild('exampleRef') exampleVC: DynamicFormComponent;
@@ -44,10 +45,20 @@ export class P2UiEditorComponent implements OnInit {
 					columnSpan: "1/1",
 					fieldList: [
 						{
+							fieldName: "formId",
+							type: "textBox",
+							label: "Form ID",
+							inputPattern: /.*/,
+							valuePattern: /.*/,
+							columnPerLine: 1,
+							multiValue: false,
+							default: ["defaultDynamicForm"],
+						},
+						{
 							fieldName: "mode",
 							type: "selectBox",
 							label: "Mode",
-							columnPerLine: 1,
+							columnPerLine: 2,
 							multiValue: false,
 							valueList: [
 								{
@@ -66,19 +77,37 @@ export class P2UiEditorComponent implements OnInit {
 							default: ["view"]
 						},
 						{
-							fieldName: "className",
+							fieldName: "displayMode",
+							type: "selectBox",
+							label: "Display Mode",
+							columnPerLine: 2,
+							multiValue: false,
+							valueList: [
+								{
+									display: "Form",
+									value: "form"
+								},
+								{
+									display: "Table",
+									value: "table"
+								}
+							],
+							default: ["top"]
+						},
+						{
+							fieldName: "customClass",
 							type: "textBox",
-							label: "Form ID",
+							label: "Custom Class",
 							inputPattern: /.*/,
 							valuePattern: /.*/,
-							columnPerLine: 1,
+							columnPerLine: 2,
 							multiValue: false,
 							default: ["defaultDynamicForm"],
 						},{
 							fieldName: "labelAlign",
 							type: "selectBox",
 							label: "Label Align",
-							columnPerLine: 1,
+							columnPerLine: 2,
 							multiValue: false,
 							valueList: [
 								{
@@ -92,19 +121,36 @@ export class P2UiEditorComponent implements OnInit {
 							],
 							default: ["top"]
 						},{
-							fieldName: "frame",
+							fieldName: "multiForm",
 							type: "selectBox",
-							label: "Frame",
-							columnPerLine: 1,
+							label: "Multi Form",
+							columnPerLine: 2,
 							multiValue: false,
 							valueList: [
 								{
 									display: "Yes",
-									value: "yes"
+									value: true
 								},
 								{
 									display: "No",
-									value: "no"
+									value: false
+								}
+							],
+							default: ["No"]
+						},{
+							fieldName: "frame",
+							type: "selectBox",
+							label: "Frame",
+							columnPerLine: 2,
+							multiValue: false,
+							valueList: [
+								{
+									display: "Yes",
+									value: true
+								},
+								{
+									display: "No",
+									value: false
 								}
 							],
 							default: ["No"]
@@ -119,16 +165,33 @@ export class P2UiEditorComponent implements OnInit {
 							fieldName: "addRow",
 							type: "selectBox",
 							label: "Add Row",
-							columnPerLine: 1,
+							columnPerLine: 2,
 							multiValue: false,
 							valueList: [
 								{
 									display: "Yes",
-									value: "yes"
+									value: true
 								},
 								{
 									display: "No",
-									value: "no"
+									value: false
+								}
+							],
+							default: ["No"]
+						},{
+							fieldName: "deleteRow",
+							type: "selectBox",
+							label: "Delete Row",
+							columnPerLine: 2,
+							multiValue: false,
+							valueList: [
+								{
+									display: "Yes",
+									value: true
+								},
+								{
+									display: "No",
+									value: false
 								}
 							],
 							default: ["No"]
@@ -139,83 +202,24 @@ export class P2UiEditorComponent implements OnInit {
 							columnPerLine: 1,
 							multiValue: false,
 							default: ["Add New"]
-						},{
-							fieldName: "deleteRow",
-							type: "selectBox",
-							label: "Delete Row",
-							columnPerLine: 1,
-							multiValue: false,
-							valueList: [
-								{
-									display: "Yes",
-									value: "yes"
-								},
-								{
-									display: "No",
-									value: "no"
-								}
-							],
-							default: ["No"]
-						},{
-							fieldName: "disableDelete",
-							type: "selectBox",
-							label: "Disable Delete Row",
-							columnPerLine: 1,
-							multiValue: true,
-							valueList: [
-								{
-									display: "Yes",
-									value: "yes"
-								},
-								{
-									display: "No",
-									value: "no"
-								}
-							],
-							default: ["No"]
-						},{
-							fieldName: "enableRowIndex",
-							type: "selectBox",
-							label: "Enable All Field in Row",
-							note: "Array Index",
-							columnPerLine: 1,
-							multiValue: true,
-							valueList: [
-								{
-									display: "Yes",
-									value: "yes"
-								},
-								{
-									display: "No",
-									value: "no"
-								}
-							],
-							default: ["No"]
-						},{
-							fieldName: "disableList",
-							type: "textBox",
-							label: "Disable Field List",
-							note: "Array Index",
-							columnPerLine: 1,
-							multiValue: true,
-							default: ["No"]
-						}
+						},
 					]
 				}
 			]
 		},
 		data:[{
+			formId: ["dynamicFormExample"],
 			mode: ["edit"],
-			className: ["defaultDynamicForm"],
+			customClass: ["defaultDynamicForm"],
+			displayMode: ['form'],
 			labelAlign: ["top"],
-			frame: ["no"],
+			multiForm: [false],
+			frame: [false],
 			frameName: [""],
-			addRow: ["no"],
+			addRow: [false],
 			addRowText: ["Add New"],
-			deleteRow: ["no"],
-			disableDelete: ["no"],
-			enableRowIndex: ["no"],
-			disableList: [""],
+			deleteRow: [false],
+			// disableList: [""],
 		}]
 	};
 	containerPropertiesForm = {
@@ -889,6 +893,7 @@ export class P2UiEditorComponent implements OnInit {
 	selectedFieldName = "";
 	tempFieldType = "";
 	fieldSelected = false;
+	containerSelected = false;
 	importFlag = false;
 	public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
 	constructor() {
@@ -910,6 +915,7 @@ export class P2UiEditorComponent implements OnInit {
             this.importFlag = true
 			let data = {};
 			let containerList = [];
+			// let disableFieldValue = [];
 			for(let containerIndex in json) {
 				// if (typeof(this.formCreation.form.containerList) == "undefined") {
 				// 	//this.formCreation.form.containerList = [];
@@ -922,6 +928,10 @@ export class P2UiEditorComponent implements OnInit {
 					fieldList: []
 				};
 				for (let fieldIndex in json[containerIndex]) {
+					// disableFieldValue.push({
+					// 	display:fieldIndex,
+					// 	value:fieldIndex,
+					// })
 					let newFieldSet = {
 						fieldName: fieldIndex,
 						label: "Label Name "+fieldIndex,
@@ -934,7 +944,14 @@ export class P2UiEditorComponent implements OnInit {
 					data[fieldIndex] = [json[containerIndex][fieldIndex]];
 				}
 				containerList.push(container);
+
 			}
+			// let mapSet = {
+			// 	disableList : {
+			// 		valueList: disableFieldValue
+			// 	}
+			// };
+			// this.formEditVC.mapSetAttribute(mapSet);
 			this.formCreation.form.containerList = containerList;
 			this.formCreation.data = [];
 			this.formCreation.data.push(data);
@@ -946,6 +963,7 @@ export class P2UiEditorComponent implements OnInit {
 		this.selectedContainer = event.containerIndex;
 		this.selectedFieldIndex = event.fieldIndex;
 		this.selectedFieldName = event.fieldName;
+		this.containerSelected = true;
 		if (event.feildName != null) {
 			this.fieldSelected = true;
 			this.setComponentEditAbleField(event.feildName,componentType);
@@ -1066,14 +1084,18 @@ export class P2UiEditorComponent implements OnInit {
                 let replace = matchRow.replace(/"/g,"");
                 exportJson = exportJson.replace(search,replace);
             }
-            let match2 = exportJson.match(/"\/.*\/"/gm);
-            if (match2 != null) {
-                for (let match2Row of match2) {
-                    let search = match2Row;
-                    let replace = match2Row.replace(/(^"|"$)/g,"");
-                    exportJson = exportJson.replace(search,replace);
-                }
-            }
+			let match2 = exportJson.match(/"\/.*\/"/gm);
+			if (match2 != null) {
+				for (let match2Row of match2) {
+					let search = match2Row;
+					let replace = match2Row.replace(/(^"|"$)/g,"");
+					exportJson = exportJson.replace(search,replace);
+				}
+			}
+			let search = "hoverField";
+			let replace = "";
+			exportJson = exportJson.replace(search,replace);
+
             this.exportData.data = exportJson;
 
         }
@@ -1098,16 +1120,37 @@ export class P2UiEditorComponent implements OnInit {
 		}
 	}
 	processSetContainer() {
-		let mapGetValue = {
-			containerName: "containerName:STRING",
-			customClass: "customClass:STRING",
-			columnSize: "columnSize:STRING",
-			columnSizeOf: "columnSizeOf:STRING"
-		};
-		let getValue = this.containerEditVC.mapGetValue(mapGetValue,0);
-		this.formCreation.form.containerList[this.selectedContainer].containerName = getValue.containerName;
-		this.formCreation.form.containerList[this.selectedContainer].customClass = getValue.customClass;
-		this.formCreation.form.containerList[this.selectedContainer].columnSpan = getValue.columnSize+"/"+getValue.columnSizeOf;
+		if (this.containerSelected) {
+			let mapGetValue = {
+				containerName: "containerName:string",
+				customClass: "customClass:string",
+				columnSize: "columnSize:string",
+				columnSizeOf: "columnSizeOf:string"
+			};
+			let getValue = this.containerEditVC.mapGetValue(mapGetValue,0);
+			this.formCreation.form.containerList[this.selectedContainer].containerName = getValue.containerName;
+			this.formCreation.form.containerList[this.selectedContainer].customClass = getValue.customClass;
+			this.formCreation.form.containerList[this.selectedContainer].columnSpan = getValue.columnSize+"/"+getValue.columnSizeOf;
+			this.exampleVC.reRenderForm();
+		}
+	}
+	processSetFormOption() {
+		let mapGetFormOption = {
+			formId:"formId",
+			mode:"mode.value",
+			customClass:"customClass",
+			displayMode:"displayMode.value",
+			labelAlign:"labelAlign",
+			multiForm:"multiForm.value:bool",
+			frame:"frame.value:bool",
+			frameName:"frameName",
+			addRow:"addRow.value:bool",
+			addRowText:"addRowText",
+			deleteRow:"deleteRow.value:bool"
+		}
+		let formOptionData = this.formEditVC.mapGetValue(mapGetFormOption,0);
+		console.log(formOptionData);
+		this.formCreation.form.option = formOptionData;
 		this.exampleVC.reRenderForm();
 	}
 }

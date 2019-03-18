@@ -11,17 +11,14 @@ import {LightBreakDynamicFormModule} from './dynamic/dynamic-form.module';
 import {MalihuScrollbarModule} from 'ngx-malihu-scrollbar';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
+import { OverAllExampleComponent } from './over-all-example/over-all-example.component';
+import { FunctionMaualComponent } from './function-maual/function-maual.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: P2UiEditorComponent
-    },
-    {
-        path: 'test',
-        component: TestDynamicComponent
+        component: OverAllExampleComponent
     }
-
 ];
 
 @NgModule({
@@ -29,6 +26,8 @@ const routes: Routes = [
         AppComponent,
         TestDynamicComponent,
         P2UiEditorComponent,
+        OverAllExampleComponent,
+        FunctionMaualComponent,
     ],
     imports: [
         BrowserModule,

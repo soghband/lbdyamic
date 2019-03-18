@@ -887,3 +887,33 @@
       margin-left: 0; }
   .btn-style-dynamic .glyphicon {
     top: 0; }
+
+.mainPanelDF {
+  width: calc(100% - 30px);
+  margin: 15px 15px;
+  position: relative; }
+  .mainPanelDF .panelAlign {
+    margin: 0 auto;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1); }
+    .mainPanelDF .panelAlign .header {
+      color: #ffffff;
+      font-size: 22px;
+      padding: 0px 10px;
+      background: #8ac33e;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      position: relative; }
+      .mainPanelDF .panelAlign .header .closeBtn {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        cursor: hand;
+        cursor: pointer; }
+    .mainPanelDF .panelAlign .contentPanel {
+      border: solid 1px #DDD;
+      border-top: 0px;
+      padding: 15px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px; }

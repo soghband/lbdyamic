@@ -125,7 +125,7 @@ export class NgxDateComponent extends DynamicBehaviorComponent implements OnInit
 
     }
 
-    processPanelCallBack() {
+    processPanelCallBack(event) {
         this.panelCallBack.emit({
             feildName: this.fieldCreation.fieldName
         });

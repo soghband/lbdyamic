@@ -120,7 +120,7 @@ export class DateComponent extends DynamicBehaviorComponent implements OnInit {
     processCall(data) {
 
     }
-    processPanelCallBack() {
+    processPanelCallBack(event) {
         this.panelCallBack.emit({
             feildName: this.fieldCreation.fieldName
         });

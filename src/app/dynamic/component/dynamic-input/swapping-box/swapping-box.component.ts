@@ -46,7 +46,7 @@ export class SwappingBoxComponent extends DynamicBehaviorComponent implements On
 	processCall(data) {
 
 	}
-	processPanelCallBack() {
+	processPanelCallBack(event) {
 		this.panelCallBack.emit({
 			feildName: this.fieldCreation.fieldName
 		});
