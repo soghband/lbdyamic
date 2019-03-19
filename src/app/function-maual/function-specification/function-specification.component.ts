@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'specification-panel',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./function-specification.component.css']
 })
 export class FunctionSpecificationComponent implements OnInit {
-
+  @Input() using = "";
+  @Input() parameter = "N/A";
   constructor() { }
 
   ngOnInit() {

@@ -566,7 +566,7 @@ export class TestDynamicComponent implements OnInit {
         data:[
             {
 				operatorFlag: [""],
-                testTextBox: [""],
+                testTextBox: ["testDup-1"],
                 testAutoComplete: [
                     {
                         display:"1",
@@ -611,7 +611,7 @@ export class TestDynamicComponent implements OnInit {
                 testDate: [""]
             },{
 				operatorFlag: [""],
-                testTextBox: [""],
+                testTextBox: ["testDup-2"],
                 testAutoComplete: [
                     {
                         display:"1",
@@ -656,7 +656,7 @@ export class TestDynamicComponent implements OnInit {
                 testDate: [""]
             },{
 				operatorFlag: [""],
-                testTextBox: [""],
+                testTextBox: ["testDup-3"],
                 testAutoComplete: [
                     {
                         display:"1",
@@ -701,7 +701,7 @@ export class TestDynamicComponent implements OnInit {
                 testDate: [""]
             },{
 				operatorFlag: [""],
-                testTextBox: [""],
+                testTextBox: ["testDup-4"],
                 testAutoComplete: [
                     {
                         display:"1",
@@ -1462,5 +1462,10 @@ export class TestDynamicComponent implements OnInit {
 
 	testDuplicateToNewRow() {
 		this.dynamicFormTable.duplicateToNewRow(0);
+	}
+
+	testCheckDuplicate() {
+		let check = this.dynamicFormTable.checkDuplicate(["testTextBox"],/([a-zA-Z].*)(-)(\d)/g,1);
+		console.log(check)
 	}
 }

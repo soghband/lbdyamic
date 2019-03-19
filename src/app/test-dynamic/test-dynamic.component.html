@@ -40,6 +40,7 @@
         <div class="btn-style-dynamic" (click)="testDisableTab()">Disable Tab 5</div>
         <div class="btn-style-dynamic" (click)="testEnableTab()">Enable Tab 5</div>
         <div class="btn-style-dynamic" (click)="testDuplicateToNewRow()">Test Duplicate To New Row</div>
+        <div class="btn-style-dynamic" (click)="testCheckDuplicate()">test check duplicate</div>
     </div>
     <div class="tabContentPanel {{tabListRef.getCssStatus('Table')}}">
         <app-dynamic-table [tableCreation]="tableCreation" #tableId (callBack)="processCallBack($event)"></app-dynamic-table>

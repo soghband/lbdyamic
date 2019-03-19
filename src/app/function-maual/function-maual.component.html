@@ -17,7 +17,9 @@
                 <explanation-panel>
                     {{explanationText[functionName][lang]}}
                 </explanation-panel>
-                <specification-panel>{{explanationText[functionName].detail}}</specification-panel>
+                <specification-panel
+                    [using]="explanationText[functionName].using"
+                    [parameter]="explanationText[functionName].parameter">{{explanationText[functionName].example}}</specification-panel>
             </div>
         </app-function-panel>
 
