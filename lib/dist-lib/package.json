@@ -1,6 +1,6 @@
 {
   "name": "lbdynamic",
-  "version": "1.1.20",
+  "version": "1.2.1",
   "description": "Dynamic From For Angular 4",
   "main": "index.js",
   "scripts": {

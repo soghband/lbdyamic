@@ -13,6 +13,9 @@ import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import { OverAllExampleComponent } from './over-all-example/over-all-example.component';
 import { FunctionMaualComponent } from './function-maual/function-maual.component';
+import { ExplanationPanelComponent } from './function-maual/explanation-panel/explanation-panel.component';
+import { FunctionSpecificationComponent } from './function-maual/function-specification/function-specification.component';
+import { FunctionPanelComponent } from './function-maual/function-panel/function-panel.component';
 
 const routes: Routes = [
     {
@@ -28,6 +31,9 @@ const routes: Routes = [
         P2UiEditorComponent,
         OverAllExampleComponent,
         FunctionMaualComponent,
+        ExplanationPanelComponent,
+        FunctionSpecificationComponent,
+        FunctionPanelComponent,
     ],
     imports: [
         BrowserModule,

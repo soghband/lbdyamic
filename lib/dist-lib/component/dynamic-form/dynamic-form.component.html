@@ -27,9 +27,7 @@
                                           [rowIndex]="rowIndex"
                                           (callBack)="processCallBack($event)"
                                           (panelCallBack)="processPanelCallBack($event)">
-
                     </app-dynamic-form-row>
-
                 </ng-container>
             </ng-container>
         </ng-container>
@@ -71,9 +69,7 @@
                         </tr>
                     </table>
                 </div>
-
             </div>
-
         </ng-container>
         <div *ngIf="formCreation.form.option.addRow && formCreation.form.option.displayMode != 'table'" class="dp2AddNew">
             <div class="dp2AddNewBtn" id="add_row_data" (click)="addRow()">
