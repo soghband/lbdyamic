@@ -1121,14 +1121,17 @@ export class DynamicFormComponent implements OnInit {
         }
         let formRow = this.getFormRow();
         for (let i = 0;i<formRow;i++) {
-            let data = this.mapGetValue(mapGet,i)
+            let data = this.mapGetValue(mapGet,i);
             for (let dataKey in data) {
-                let match = regEx.exec(data[dataKey]);
-                if (tempDataCheck.indexOf(match[regExIndex]) > -1) {
-                    check = false;
-                    break;
-                } else {
-                    tempDataCheck.push(match[regExIndex])
+                let regTest = new RegExp(regEx);
+                let match = regTest.exec(data[dataKey]);
+                if (match != null) {
+                    if (tempDataCheck.indexOf(match[regExIndex]) > -1) {
+                        check = false;
+                        break;
+                    } else {
+                        tempDataCheck.push(match[regExIndex])
+                    }
                 }
             }
             if (check == false) {
