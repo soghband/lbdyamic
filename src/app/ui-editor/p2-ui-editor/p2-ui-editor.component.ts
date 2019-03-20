@@ -700,6 +700,7 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
+			"note",
 			"default"
 		],
 		textBox: [
@@ -741,6 +742,7 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
+			"note",
 			"readonly",,
 			"require",
 			"default"
@@ -751,6 +753,7 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
+			"note",
 			"readonly",,
 			"require",
 			"default",
@@ -764,7 +767,9 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
-			"readonly",,
+			"note",
+			"multiValue",
+			"readonly",
 			"require",
 			"default",
 			"valueList"
@@ -779,6 +784,7 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
+			"note",
 			"readonly",,
 			"require",
 			"multiValue",
@@ -789,6 +795,7 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
+			"note",
 			"readonly",,
 			"require",
 			"multiValue",
@@ -799,6 +806,7 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
+			"note",
 			"readonly",,
 			"require",
 			"fixedValue",
@@ -815,6 +823,7 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
+			"note",
 			"readonly",,
 			"require",
 			"default",
@@ -827,7 +836,8 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
-			"readonly",,
+			"note",
+			"readonly",
 			"require",
 			"default",
 			"valueList",
@@ -838,7 +848,8 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
-			"readonly",,
+			"note",
+			"readonly",
 			"require",
 			"default",
 			"valueList"
@@ -849,7 +860,8 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
-			"readonly",,
+			"note",
+			"readonly",
 			"require",
 			"default",
 			"valueList"
@@ -860,7 +872,8 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
-			"readonly",,
+			"note",
+			"readonly",
 			"require",
 			"default"
 		],
@@ -870,9 +883,10 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
+			"note",
 			"readonly",
 			"default",
-			"displaySingleLine",,
+			"displaySingleLine",
 			"require",
 			"valueList"
 		],
@@ -882,6 +896,7 @@ export class P2UiEditorComponent implements OnInit {
 			"labelWidth",
 			"columnPerLine",
 			"type",
+			"note",
 			"readonly",
 			"multiValue",
 			"require",
@@ -1055,11 +1070,15 @@ export class P2UiEditorComponent implements OnInit {
 				return value;
 			}
 			return [{
-				display:"",
-				value:""
+				display: "",
+				value: ""
 			}]
 		} else if (!isNumber(value)) {
-			return String(value);
+			let returnData = "";
+			if (value != undefined) {
+				returnData = String(value);
+			}
+			return returnData;
 		}
 		return value;
 	}
