@@ -1,5 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {current} from 'codelyzer/util/syntaxKind';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
 	selector: 'app-dynamic-tab',

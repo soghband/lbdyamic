@@ -19,7 +19,7 @@
                    [disabled]="getDisable()" (change)="handleFileSelect($event)"
                    [multiple]="fieldCreation.multiValue"/>
         </div>
-        <div class="dp2Note">
+        <div class="dp2Note" id="id_note_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}">
             {{fieldCreation.note}}
         </div>
         <div class="dp2Error">

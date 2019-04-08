@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </ng-container>
-            <div class="dp2Note">
+            <div class="dp2Note" id="id_note_{{(option.namePrefix ? option.namePrefix+'_':'')}}{{fieldCreation.fieldName}}">
                 {{fieldCreation.note}}
             </div>
             <div *ngIf="!(getDisable())" class="addBtn" (click)="addMultiVal()"><span

@@ -143,4 +143,14 @@ export class TextBoxComponent extends DynamicBehaviorComponent implements OnInit
         });
         return validate;
 	}
+
+	getType() {
+		if (this.fieldCreation.type == "number") {
+			return "number";
+		} else if (this.fieldCreation.type == "number") {
+			return "password";
+		} else {
+			return "textbox";
+		}
+	}
 }

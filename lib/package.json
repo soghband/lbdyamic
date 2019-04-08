@@ -1,6 +1,6 @@
 {
   "name": "lbdynamic",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -13,6 +13,7 @@
   "private": false,
   "dependencies": {
     "@soghband/zxing-library-4ng4": "^0.5.2",
+    "codelyzer": "~3.1.1",
     "core-js": "^2.4.1",
     "file-loader": "^3.0.1",
     "jquery": "^3.3.1",
